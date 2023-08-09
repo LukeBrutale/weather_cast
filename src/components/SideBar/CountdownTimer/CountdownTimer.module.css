@@ -1,0 +1,28 @@
+.timer{
+  color: rgb(255, 255, 255);
+  font-size:xx-large;
+  position: absolute;
+  bottom: 15%;
+  right: 15%;
+  left: 15%;
+  display: flex;
+}
+
+.section_numbers {
+  display: block;
+  padding: 10px;
+}
+
+.section_numbers:not(:last-child) {
+  margin-right: 30px;
+}
+
+.description {
+  font-size: medium;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

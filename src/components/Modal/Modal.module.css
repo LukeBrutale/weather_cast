@@ -1,0 +1,101 @@
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 500ms;
+}
+
+.modal_active{
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal_content {
+  border-radius: 3px;
+  background-color: white;
+  height: 450px;
+  width: 550px;
+ 
+}
+
+.header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.border_line_top {
+  display: block;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.border_line_bottom {
+  display: block;
+  border-bottom: 1px solid rgb(204, 204, 204);
+  margin-bottom: 15px;
+}
+
+.btn_close {
+  background-color: #fff;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.btn_close:hover {
+  transition: 300ms;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+   rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+   rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+input {
+  width: 509px;
+  padding: 5px 10px;
+}
+
+.input_date {
+  padding: 5px 20px;
+  margin-top: 30px;
+  margin-bottom: 35px;
+}
+
+.input_date div {
+  margin-bottom: 20px;
+}
+
+
+.btn_modal {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 15px;
+
+}
+
+.btn_modal button {
+  border-radius: 3px;
+  border: 1px solid rgb(204, 204, 204);;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.btn_modal button:hover {
+  transition: 250ms;
+  background-color: #1890ff;
+  color: #e2e2e2;
+}
+
+.required_field {
+  color: red;
+}

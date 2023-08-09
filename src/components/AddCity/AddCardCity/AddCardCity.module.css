@@ -1,0 +1,39 @@
+.container {
+    grid-area: country;
+    max-height: 400px;
+    display: flex;
+    overflow-x: auto;
+}
+
+.btn_add_city{
+  background-color: #e2e2e2;
+  border: none;
+  border-radius: 3px;
+  min-width: 200px;
+  height: 200px;
+  padding: 20px;
+  margin: 0 0 0 25px;
+   cursor: pointer;
+
+}
+
+.btn_add_city:hover {
+  transition: 300ms;
+  background-color: #188ffe;
+  color: bisque;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+   rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+   rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+/* .container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+  .add_city {
+    flex: 0 0 auto;
+  }
+} */

@@ -1,0 +1,21 @@
+.city {
+    grid-area: country;
+    max-height: 400px;
+}
+
+.add_city{
+  background-color: #e2e2e2;
+  border: none;
+  border-radius: 3px;
+  max-width: 200px;
+  max-height: 200px;
+  padding: 20px;
+  margin: 0 0 0 25px;
+   cursor: pointer;
+}
+
+.add_city:hover {
+  transition: 250ms;
+  background-color: #1890ff;
+  color: bisque;
+}

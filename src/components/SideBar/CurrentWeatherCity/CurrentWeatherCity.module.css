@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  color: #ffffff;
+}
+
+.icon_temp {
+  display: flex;
+  align-items: center;
+  
+    position: absolute;
+    left: -70px;
+    top: 50px;
+
+}
+
+.temp {
+  font-size: 50px;
+  padding-left: 20px;
+}
+
+img {
+  width: 65px;
+  height: 65px;
+}
+
+h1 {
+  margin-bottom: 50px;
+}
+
+h2 {
+  margin-top: 50px;
+}
