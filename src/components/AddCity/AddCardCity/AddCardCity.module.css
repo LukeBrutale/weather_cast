@@ -3,6 +3,7 @@
     max-height: 400px;
     display: flex;
     overflow-x: auto;
+    margin-right: 15px;
 }
 
 .btn_add_city{
