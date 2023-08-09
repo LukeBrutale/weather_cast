@@ -32,7 +32,7 @@ function SearchCity({ cards }) {
       toast("Enter city");
       return;
     }
-    setSearchCity('')
+    // setSearchCity('')
   }
 
 

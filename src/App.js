@@ -13,7 +13,6 @@ import SideBar from "./components/SideBar/SideBar";
 
 function App() {
   // debugger;
-  // JSON.parse(localStorage.getItem("userData")) ??
 
   const [cards, setCards] = useState(
     JSON.parse(localStorage.getItem("userData")) ?? [
@@ -45,7 +44,7 @@ function App() {
   }
 
   function filterCard(id) {
-    // debugger;
+    debugger;
     const filterCityCard = cards.filter(card => card.id === id);
     setSearchCity(filterCityCard[0].cityName);
     setStartDate(filterCityCard[0].startDate);
