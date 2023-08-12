@@ -44,7 +44,7 @@ function App() {
   }
 
   function filterCard(id) {
-    debugger;
+    // debugger;
     const filterCityCard = cards.filter(card => card.id === id);
     setSearchCity(filterCityCard[0].cityName);
     setStartDate(filterCityCard[0].startDate);

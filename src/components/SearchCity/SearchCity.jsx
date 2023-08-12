@@ -6,7 +6,7 @@ import s from './SearchCity.module.css'
 function SearchCity({ cards }) {
   // debugger
   const [searchCity, setSearchCity] = useState('')
-  const [, setFilteredCards] = useState(cards);
+  const [filtededCard, setFilteredCards] = useState(cards);
 
   const handleNameChange = e => {
     const searchText = e.target.value;
@@ -24,15 +24,13 @@ function SearchCity({ cards }) {
   }
 
 
-
-
   const handleSubmit = e => {
     e.preventDefault();
     if (searchCity.trim() === '') {
       toast("Enter city");
       return;
     }
-    // setSearchCity('')
+    setSearchCity('')
   }
 
 
