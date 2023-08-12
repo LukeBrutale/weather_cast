@@ -3,14 +3,22 @@ import s from './Modal.module.css'
 
 // import CityInput from './CityInput'
 
-const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, cards, formattedDate }) => {
+const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, cards, tomorrowFormatted, twoWeeksLaterFormatted }) => {
   // debugger
   const [searchCity, setSearchCity] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  // console.log(startDate)
+  const currentDateString = new Date().toISOString().split("T")[0];
+  const twoWeeksLaterFormattedFirst = twoWeeksLaterFormatted(currentDateString);
+
+  const anotherDateString = '2023-08-15';
+  const twoWeeksLaterFormattedSecond = twoWeeksLaterFormatted(anotherDateString);
 
   const classes = s.modal + ' ' + s.modal_active;
   // const selectedCityInfo = cards.find((city) => city.cityName === searchCity);
+
+  // '2023-08-15'
 
 
   const closeModal = () => {
@@ -93,8 +101,8 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
                 type="date"
                 id="start"
                 value={startDate}
-                min={new Date().toISOString().substr(0, 10)}
-                max={formattedDate()}
+                min={tomorrowFormatted()}
+                max={twoWeeksLaterFormattedFirst}
                 onChange={handleStartDateChange} />
             </div>
             <div>
@@ -104,7 +112,7 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
                 id="end"
                 value={endDate}
                 min={startDate}
-                // max={formattedDate('2023-15-08')}
+                max={twoWeeksLaterFormattedSecond}
                 onChange={handleEndDateChange} />
             </div>
           </div>

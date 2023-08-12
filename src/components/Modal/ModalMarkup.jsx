@@ -1,90 +1,116 @@
-// import React, { useState } from 'react';
+import { useState } from 'react'
+import s from './Modal.module.css'
 
-// const CityInput = () => {
-//   const [selectedCity, setSelectedCity] = useState('');
-//   const cities = [
-//     { name: 'Київ', photo: 'path_to_kyiv_photo.jpg' },
-//     { name: 'Львів', photo: 'path_to_lviv_photo.jpg' },
-//     { name: 'Харків', photo: 'path_to_kharkiv_photo.jpg' },
-//     // Додайте інші міста та їх фото за потреби
-//   ];
+// import CityInput from './CityInput'
 
-//   const handleCityChange = (event) => {
-//     setSelectedCity(event.target.value);
-//   };
+const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, cards, formattedDate }) => {
+  // debugger
+  const [searchCity, setSearchCity] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
-//   const selectedCityInfo = cities.find((city) => city.name === selectedCity);
-
-//   return (
-//     <div>
-//       <label htmlFor="city">Оберіть місто:</label>
-//       <input
-//         type="text"
-//         id="city"
-//         value={selectedCity}
-//         onChange={handleCityChange}
-//         list="cities"
-//       />
-//       <datalist id="cities">
-//         {cities.map((city, index) => (
-//           <option key={index} value={city.name} />
-//         ))}
-//       </datalist>
-
-//       {selectedCityInfo && (
-//         <div>
-//           <h2>{selectedCityInfo.name}</h2>
-//           <img src={selectedCityInfo.photo} alt={selectedCityInfo.name} />
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default CityInput;
+  const classes = s.modal + ' ' + s.modal_active;
+  // const selectedCityInfo = cards.find((city) => city.cityName === searchCity);
 
 
-import React, { useState } from 'react';
+  const closeModal = () => {
+    setModalActive(false);
+  }
 
-const CityInput = () => {
-  const [selectedCity, setSelectedCity] = useState('');
-  const cities = [
-    { name: 'Київ', photo: 'path_to_kyiv_photo.jpg' },
-    { name: 'Львів', photo: 'path_to_lviv_photo.jpg' },
-    { name: 'Харків', photo: 'path_to_kharkiv_photo.jpg' },
-    // Додайте інші міста та їх фото за потреби
-  ];
+  const keyPressEsc = (e) => {
+    if (e.key === "Escape") {
+      setModalActive(false)
+    }
+  }
 
-  const handleCityChange = (event) => {
-    setSelectedCity(event.target.value);
-  };
+  const handleAddCard = () => {
+    addCard(searchCity, startDate, endDate);
+    setModalActive(false);
+  }
 
-  const selectedCityInfo = cities.find((city) => city.name === selectedCity);
+  const handleNameCityChange = e => {
+    setSearchCity(e.currentTarget.value.toLowerCase())
+  }
+
+  const handleStartDateChange = e => {
+    setStartDate(e.currentTarget.value)
+  }
+
+  const handleEndDateChange = e => {
+    setEndDate(e.currentTarget.value)
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(searchCity);
+    onChangeStartDate(startDate);
+    onChangeEndDate(endDate);
+    setSearchCity('');
+    setStartDate('');
+    setEndDate('')
+  }
+
+
+
+
 
   return (
-    <div>
-      <label htmlFor="city">Оберіть місто:</label>
-      <input
-        type="text"
-        id="city"
-        value={selectedCity}
-        onChange={handleCityChange}
-        list="cities"
-      />
-      <datalist id="cities">
-        {cities.map((city, index) => (
-          <option key={index} value={city.name} label={city.name} />
-        ))}
-      </datalist>
-
-      {selectedCityInfo && (
-        <div>
-          <h2>{selectedCityInfo.name}</h2>
-          <img src={selectedCityInfo.photo} alt={selectedCityInfo.name} />
+    <div className={modalActive ? classes : s.modal} onClick={closeModal} onKeyDown={keyPressEsc}>
+      <div className={s.modal_content} onClick={e => e.stopPropagation()} >
+        <div className={s.header}>
+          <h4>Create trip</h4>
+          <button className={s.btn_close} onClick={closeModal}>❌</button>
         </div>
-      )}
-    </div>
-  );
-};
 
-export default CityInput;
+        <span className={s.border_line_top}></span>
+
+        <form onSubmit={handleSubmit}>
+          <div className={s.input_date}>
+            <div>
+              <label><span className={s.required_field}>*</span>City</label>
+              <input
+                type="text"
+                id="city"
+                value={searchCity}
+                placeholder="Please select a city"
+                onChange={handleNameCityChange}
+                list="cities" />
+              <datalist id="cities">
+                {cards.map((city, index) => (
+                  <option key={index} value={city.cityName} label={city.cityName} />
+                ))}
+              </datalist>
+            </div>
+            <div>
+              <label><span className={s.required_field}>*</span>Start date</label>
+              <input
+                type="date"
+                id="start"
+                value={startDate}
+                min={new Date().toISOString().substr(0, 10)}
+                max={formattedDate()}
+                onChange={handleStartDateChange} />
+            </div>
+            <div>
+              <label><span className={s.required_field}>*</span>End date</label>
+              <input
+                type="date"
+                id="end"
+                value={endDate}
+                min={startDate}
+                onChange={handleEndDateChange} />
+            </div>
+          </div>
+          <span className={s.border_line_bottom}></span>
+
+          <div className={s.btn_modal}>
+            <button onClick={closeModal}>Cancel</button>
+            <button type="submit" onClick={handleAddCard} >Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default Modal;

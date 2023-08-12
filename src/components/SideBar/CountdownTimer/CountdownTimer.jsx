@@ -6,10 +6,6 @@ import React, { useState, useEffect } from 'react';
 const CountdownTimer = ({ startDate }) => {
   // debugger
 
-  // const date = new Date(startDate).getTime()
-  // const now = new Date().getTime()
-  // const milliseconds = date - now;
-
   const [timeRemaining, setTimeRemaining] = useState(0);
 
   const countdown = () => {
@@ -25,16 +21,17 @@ const CountdownTimer = ({ startDate }) => {
     const date = new Date(startDate).getTime()
     const now = new Date().getTime()
     const milliseconds = date - now;
-
     setTimeRemaining(milliseconds)
   }, [startDate])
 
 
   useEffect(() => {
+    let timerId;
     if (timeRemaining <= 0) {
+      clearInterval(timerId);
       return;
     }
-    const timerId = setInterval(countdown, 1000);
+    timerId = setInterval(countdown, 1000);
     return () => clearInterval(timerId);
   }, [timeRemaining]);
 
