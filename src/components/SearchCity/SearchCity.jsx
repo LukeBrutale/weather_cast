@@ -53,4 +53,3 @@ function SearchCity({ cities, updateFilteredCards }) {
 
 
 export default SearchCity;
-

@@ -35,12 +35,14 @@ function App() {
   function removeCard(id) {
     let filteredCards = cards.filter(card => card.id !== id);
     setCards(filteredCards);
+    setFilteredCards(filteredCards);
   }
 
   function addCard(cityName, startDate, endDate) {
     let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: "https://media.istockphoto.com/id/1206575314/fr/vectoriel/image-non-disponible-ic%C3%B4ne.jpg?s=170667a&w=0&k=20&c=12KccDH9dWe-WD9IPmS25ik_-rZfd8qUxujILlYG-Uo=" };
     let newCityCard = [newCard, ...cards];
     setCards(newCityCard);
+    setFilteredCards(newCityCard);
   }
 
   function filterCityWeather(id) {
@@ -52,8 +54,6 @@ function App() {
 
   function tomorrowFormatted() {
     const currentInitDate = new Date();
-    // console.log("currentInitDate", currentInitDate);
-
     const tomorrow = new Date(currentInitDate);
     tomorrow.setDate(currentInitDate.getDate() + 1);
     const tomorrowFormatted = tomorrow.toISOString().split("T")[0];
@@ -61,13 +61,14 @@ function App() {
   }
 
   function twoWeeksLaterFormatted(inputDate) {
-    const currentDate = new Date(inputDate);
-    console.log("currentDate", currentDate);
+    if (!inputDate) {
+      inputDate = new Date();
+    } else {
+      inputDate = new Date(inputDate);
+    }
 
-    const twoWeeksLater = new Date(currentDate.toISOString());
-    twoWeeksLater.setDate(currentDate.getDate() + 14);
-    console.log("twoWeeksLater", twoWeeksLater);
-
+    const twoWeeksLater = new Date(inputDate);
+    twoWeeksLater.setDate(inputDate.getDate() + 14);
     const twoWeeksLaterFormatted = twoWeeksLater.toISOString().split("T")[0];
     return twoWeeksLaterFormatted;
   }
@@ -80,7 +81,7 @@ function App() {
     <div className="App">
       <Header />
       <SearchCity cities={cards} updateFilteredCards={updateFilteredCards} />
-      <AddCity searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} cards={cards} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
+      <AddCity searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
       <SideBar searchCity={searchCity} startDate={startDate} />
       <Modal modalActive={modalActive} setModalActive={setModalActive} onSubmit={setSearchCity} onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} addCard={addCard} cards={cards} tomorrowFormatted={tomorrowFormatted} twoWeeksLaterFormatted={twoWeeksLaterFormatted} />
       <ToastContainer autoClose={3000} theme="dark" />

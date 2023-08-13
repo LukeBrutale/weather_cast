@@ -2,12 +2,12 @@ import s from './AddCardCityView.module.css'
 import { v1 } from 'uuid'
 
 
-const AddCardCityView = ({ cards, removeCard, filteredCards, filterCityWeather }) => {
+const AddCardCityView = ({ removeCard, filteredCards, filterCityWeather }) => {
   // debugger
 
   return (
     <>
-      {cards.map(card => (
+      {filteredCards.map(card => (
         <div className={s.container} key={v1()} onClick={() => { filterCityWeather(card.id) }}>
           <img src={card.img} alt='' className={s.img_city} />
           <div className={s.city_date_name}>

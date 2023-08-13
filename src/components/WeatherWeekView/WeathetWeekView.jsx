@@ -11,7 +11,7 @@ function WeatherWeekView({ request }) {
         {request.days.map(entry => (
           <li className={s.item} key={v1()}>
             <h4>{new Date(entry.datetime).toLocaleString('en-US', options)}</h4>
-            <img src={`./${entry.icon}.svg`} alt={entry.conditions} />
+            <img src={`weather_cast/${entry.icon}.svg`} alt={entry.conditions} />
             <span>{entry.tempmax}&#176; / {entry.tempmin}&#176;</span>
           </li>
         ))}
