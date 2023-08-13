@@ -5,14 +5,15 @@ import s from './Modal.module.css'
 
 const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, cards, tomorrowFormatted, twoWeeksLaterFormatted }) => {
   // debugger
-  const [searchCity, setSearchCity] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  // console.log(startDate)
+
   const currentDateString = new Date().toISOString().split("T")[0];
   const twoWeeksLaterFormattedFirst = twoWeeksLaterFormatted(currentDateString);
 
-  const anotherDateString = '2023-08-15';
+  const [searchCity, setSearchCity] = useState('');
+  const [startDate, setStartDate] = useState(twoWeeksLaterFormattedFirst);
+  const [endDate, setEndDate] = useState('');
+
+  const anotherDateString = startDate;
   const twoWeeksLaterFormattedSecond = twoWeeksLaterFormatted(anotherDateString);
 
   const classes = s.modal + ' ' + s.modal_active;

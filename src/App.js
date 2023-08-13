@@ -16,8 +16,8 @@ function App() {
 
   const [cards, setCards] = useState(
     JSON.parse(localStorage.getItem("userData")) ?? [
-      { id: v1(), cityName: "London", startDate: "2023-08-15", endDate: "2023-08-18", img: "https://image.arrivalguides.com/500x500/09/1dd23cc06c31c31ba7df72f2c74db5bc.jpg" },
-      { id: v1(), cityName: "Kyiv", startDate: "2023-08-12", endDate: "2023-08-15", img: "https://visitukraine.today/media/blog/previews/fAWjVMXYLXywGzneHknrh9tuBRtdH12vJjT5awRu.webp" },
+      { id: v1(), cityName: "London", startDate: "2023-08-16", endDate: "2023-08-18", img: "https://image.arrivalguides.com/500x500/09/1dd23cc06c31c31ba7df72f2c74db5bc.jpg" },
+      { id: v1(), cityName: "Kyiv", startDate: "2023-08-15", endDate: "2023-08-20", img: "https://visitukraine.today/media/blog/previews/fAWjVMXYLXywGzneHknrh9tuBRtdH12vJjT5awRu.webp" },
       { id: v1(), cityName: "Los Angeles", startDate: "2023-08-20", endDate: "2023-08-25", img: "https://griffithobservatory.org/wp-content/uploads/2021/12/cameron-venti-6QDvwq2Fjsc-unsplash-scaled.jpg" },
     ],
   );
@@ -69,8 +69,12 @@ function App() {
 
   function twoWeeksLaterFormatted(inputDate) {
     const currentDate = new Date(inputDate);
+    console.log("currentDate:", currentDate);
+
     const twoWeeksLater = new Date(currentDate);
     twoWeeksLater.setDate(currentDate.getDate() + 14);
+    console.log("twoWeeksLater:", twoWeeksLater);
+
     const twoWeeksLaterFormatted = twoWeeksLater.toISOString().split("T")[0];
     return twoWeeksLaterFormatted;
   }
