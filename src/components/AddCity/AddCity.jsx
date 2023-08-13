@@ -8,7 +8,7 @@ import ErrorView from '../ErrorView/ErrorView';
 import api from '../../services/weatherWeekAPI'
 
 
-function AddCity({ searchCity, setModalActive, startDate, endDate, cards, removeCard, filterCard }) {
+function AddCity({ searchCity, setModalActive, startDate, endDate, cards, removeCard, filteredCards, filterCityWeather }) {
   // debugger
   const [request, setRequest] = useState(null);
   const [error, setError] = useState(null);
@@ -35,7 +35,7 @@ function AddCity({ searchCity, setModalActive, startDate, endDate, cards, remove
 
 
   if (status === 'idle') {
-    return <AddCardCity setModalActive={setModalActive} cards={cards} removeCard={removeCard} filterCard={filterCard} />
+    return <AddCardCity setModalActive={setModalActive} cards={cards} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
   }
 
   if (status === 'pending') {
@@ -49,7 +49,7 @@ function AddCity({ searchCity, setModalActive, startDate, endDate, cards, remove
   if (status === 'resolved') {
     return (
       <>
-        <AddCardCity setModalActive={setModalActive} cards={cards} removeCard={removeCard} filterCard={filterCard} />
+        <AddCardCity setModalActive={setModalActive} cards={cards} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
         <WeatherWeekView request={request} />
       </>
     )

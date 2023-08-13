@@ -6,20 +6,19 @@ import s from './Modal.module.css'
 const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, cards, tomorrowFormatted, twoWeeksLaterFormatted }) => {
   // debugger
 
-  const currentDateString = new Date().toISOString().split("T")[0];
-  const twoWeeksLaterFormattedFirst = twoWeeksLaterFormatted(currentDateString);
-
   const [searchCity, setSearchCity] = useState('');
-  const [startDate, setStartDate] = useState(twoWeeksLaterFormattedFirst);
+  const [startDate, setStartDate] = useState(tomorrowFormatted);
   const [endDate, setEndDate] = useState('');
+
+  const currentDateString = new Date().toISOString().split("T")[0];
+  // console.log(currentDateString)
+  const twoWeeksLaterFormattedFirst = twoWeeksLaterFormatted(currentDateString);
 
   const anotherDateString = startDate;
   const twoWeeksLaterFormattedSecond = twoWeeksLaterFormatted(anotherDateString);
 
   const classes = s.modal + ' ' + s.modal_active;
   // const selectedCityInfo = cards.find((city) => city.cityName === searchCity);
-
-  // '2023-08-15'
 
 
   const closeModal = () => {
@@ -58,9 +57,6 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
     setStartDate('');
     setEndDate('')
   }
-
-
-
 
 
   return (
@@ -118,12 +114,12 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
             </div>
           </div>
           <span className={s.border_line_bottom}></span>
-
           <div className={s.btn_modal}>
             <button onClick={closeModal}>Cancel</button>
             <button type="submit" onClick={handleAddCard} >Save</button>
           </div>
         </form>
+
       </div>
     </div>
   )

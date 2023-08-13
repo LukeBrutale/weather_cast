@@ -3,7 +3,7 @@ import s from './AddCardCity.module.css'
 import AddCardCityView from '../AddCardCityView/AddCardCityView'
 
 
-const AddCardCity = ({ setModalActive, cards, removeCard, filterCard }) => {
+const AddCardCity = ({ setModalActive, cards, removeCard, filteredCards, filterCityWeather }) => {
   // debugger
   const openModal = () => {
     setModalActive(true)
@@ -11,7 +11,7 @@ const AddCardCity = ({ setModalActive, cards, removeCard, filterCard }) => {
 
   return (
     <div className={s.container}>
-      <AddCardCityView cards={cards} removeCard={removeCard} filterCard={filterCard} />
+      <AddCardCityView cards={cards} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
       <button className={s.btn_add_city} onClick={openModal} >
         <span>🞥</span>
         <h3>Add trip</h3>

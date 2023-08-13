@@ -3,16 +3,16 @@ import { toast } from 'react-toastify';
 import s from './SearchCity.module.css'
 
 
-function SearchCity({ cards }) {
+function SearchCity({ cities, updateFilteredCards }) {
   // debugger
   const [searchCity, setSearchCity] = useState('')
-  const [filtededCard, setFilteredCards] = useState(cards);
+  const [filtededCard, setFilteredCards] = useState(cities);
 
   const handleNameChange = e => {
     const searchText = e.target.value;
     setSearchCity(e.currentTarget.value)
 
-    const filtered = cards.filter(card =>
+    const filtered = cities.filter(card =>
       card.cityName.toLowerCase().includes(searchText.toLowerCase())
     );
 
@@ -21,16 +21,15 @@ function SearchCity({ cards }) {
     );
 
     setFilteredCards(sorted);
+    updateFilteredCards(sorted)
   }
-
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (searchCity.trim() === '') {
+    if (!searchCity.trim()) {
       toast("Enter city");
       return;
     }
-    setSearchCity('')
   }
 
 
@@ -46,26 +45,10 @@ function SearchCity({ cards }) {
             value={searchCity}
             onChange={handleNameChange}
           />
-          <ul>
-            {/* {filteredCards.map(card => (
-              <li key={card.id}>{card.cityName}</li>
-            ))} */}
-          </ul>
         </div>
       </form>
     </div>
   )
-
-  // return (
-  //   <div>
-  //     <input type="text" value={searchCity} onChange={handleNameChange} placeholder="Search by name" />
-  //     <ul>
-  //       {filteredCards.map(card => (
-  //         <li key={card.id}>{card.cityName}</li>
-  //       ))}
-  //     </ul>
-  //   </div>
-  // );
 };
 
 

@@ -26,6 +26,7 @@ function App() {
   const [modalActive, setModalActive] = useState(false);
   const [startDate, setStartDate] = useState(cards[0].startDate);
   const [endDate, setEndDate] = useState(cards[0].endDate);
+  const [filteredCards, setFilteredCards] = useState(cards);
 
   useEffect(() => {
     localStorage.setItem("userData", JSON.stringify(cards));
@@ -37,14 +38,12 @@ function App() {
   }
 
   function addCard(cityName, startDate, endDate) {
-    // debugger;
     let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: "https://media.istockphoto.com/id/1206575314/fr/vectoriel/image-non-disponible-ic%C3%B4ne.jpg?s=170667a&w=0&k=20&c=12KccDH9dWe-WD9IPmS25ik_-rZfd8qUxujILlYG-Uo=" };
     let newCityCard = [newCard, ...cards];
     setCards(newCityCard);
   }
 
-  function filterCard(id) {
-    // debugger;
+  function filterCityWeather(id) {
     const filterCityCard = cards.filter(card => card.id === id);
     setSearchCity(filterCityCard[0].cityName);
     setStartDate(filterCityCard[0].startDate);
@@ -52,48 +51,36 @@ function App() {
   }
 
   function tomorrowFormatted() {
-    const currentDate = new Date();
-    const tomorrow = new Date(currentDate);
-    tomorrow.setDate(currentDate.getDate() + 1);
+    const currentInitDate = new Date();
+    // console.log("currentInitDate", currentInitDate);
+
+    const tomorrow = new Date(currentInitDate);
+    tomorrow.setDate(currentInitDate.getDate() + 1);
     const tomorrowFormatted = tomorrow.toISOString().split("T")[0];
     return tomorrowFormatted;
   }
 
-  // function twoWeeksLaterFormatted() {
-  //   const currentDate = new Date();
-  //   const twoWeeksLater = new Date(currentDate);
-  //   twoWeeksLater.setDate(currentDate.getDate() + 14);
-  //   const twoWeeksLaterFormatted = twoWeeksLater.toISOString().split("T")[0];
-  //   return twoWeeksLaterFormatted;
-  // }
-
   function twoWeeksLaterFormatted(inputDate) {
     const currentDate = new Date(inputDate);
-    console.log("currentDate:", currentDate);
+    console.log("currentDate", currentDate);
 
-    const twoWeeksLater = new Date(currentDate);
+    const twoWeeksLater = new Date(currentDate.toISOString());
     twoWeeksLater.setDate(currentDate.getDate() + 14);
-    console.log("twoWeeksLater:", twoWeeksLater);
+    console.log("twoWeeksLater", twoWeeksLater);
 
     const twoWeeksLaterFormatted = twoWeeksLater.toISOString().split("T")[0];
     return twoWeeksLaterFormatted;
   }
 
-  // const currentDateString = new Date().toISOString().split("T")[0];
-  // const twoWeeksLaterFormattedFirst = twoWeeksLaterFormatted(currentDateString);
-
-  // Виклик функції вдруге з іншою датою
-  // const anotherDateString = startDate; // Ваша інша дата
-  // const twoWeeksLaterFormattedSecond = twoWeeksLaterFormatted(startDate);
-
-  // console.log(twoWeeksLaterFormattedFirst);
-  // console.log(twoWeeksLaterFormattedSecond);
+  function updateFilteredCards(newFilteredCards) {
+    setFilteredCards(newFilteredCards);
+  }
 
   return (
     <div className="App">
       <Header />
-      <SearchCity cards={cards} />
-      <AddCity searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} cards={cards} removeCard={removeCard} filterCard={filterCard} />
+      <SearchCity cities={cards} updateFilteredCards={updateFilteredCards} />
+      <AddCity searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} cards={cards} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
       <SideBar searchCity={searchCity} startDate={startDate} />
       <Modal modalActive={modalActive} setModalActive={setModalActive} onSubmit={setSearchCity} onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} addCard={addCard} cards={cards} tomorrowFormatted={tomorrowFormatted} twoWeeksLaterFormatted={twoWeeksLaterFormatted} />
       <ToastContainer autoClose={3000} theme="dark" />
