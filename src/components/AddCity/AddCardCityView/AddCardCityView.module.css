@@ -2,6 +2,12 @@
   margin: 0 20px;
   cursor: pointer;
   border: 1px solid transparent;
+  /* width: 200px;
+  height: 200px;
+  transform: rotate(90deg);
+  transform-origin: right top;
+  transform:rotate(-90deg) translateY(-100px); */
+
 }
 
 .container:hover {
