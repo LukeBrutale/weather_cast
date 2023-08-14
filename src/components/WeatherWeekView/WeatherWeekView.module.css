@@ -1,3 +1,15 @@
+.horizontal_scroll_container {
+  overflow-x: auto; 
+  white-space: nowrap;
+  padding: 10px;
+  max-width: 100%;
+  display: flex;
+  list-style: none;
+  padding: 30px;
+}
+ 
+
+
 .week{
   grid-area: week;
   margin-left: 25px;
