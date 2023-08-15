@@ -25,7 +25,7 @@ function WeatherWeekView({ request }) {
   // return (
   //   <div >
   //     <h3 className={s.week}>Week</h3>
-  //     <ul className={s.list}>
+  //     <ul className={s.horizontal_scroll_container} onWheel={handleWheel}>
   //       {request.days.map(entry => (
   //         <li className={s.item} key={v1()}>
   //           <h4>{new Date(entry.datetime).toLocaleString('en-US', options)}</h4>
@@ -39,23 +39,21 @@ function WeatherWeekView({ request }) {
 
 
   return (
-    <div className={s.horizontal_scroll_container} >
-      <div className={s.content}>
-        <h3 className={s.week}>Week</h3>
-        <ul className={s.horizontal_scroll_container} onWheel={handleWheel}>
-          {request.days.map(entry => (
-            <li className={s.item} key={v1()}>
-              <h4>{new Date(entry.datetime).toLocaleString('en-US', options)}</h4>
-              <img src={`/weather_cast/${entry.icon}.svg`} alt={entry.conditions} />
-              <span>{entry.tempmax}&#176; / {entry.tempmin}&#176;</span>
-            </li>
-          ))}
-        </ul>
+    <div
+      className="horizontal-scroll-container"
+      onWheel={handleWheel}
+    >
+      <div className="content">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
+  );
+};
 
-  )
-
-}
 
 export default WeatherWeekView;
