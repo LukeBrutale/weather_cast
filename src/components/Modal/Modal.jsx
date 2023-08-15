@@ -2,9 +2,8 @@ import { useState } from 'react';
 import s from './Modal.module.css';
 import { v1 } from "uuid";
 
-import CityAutocomplete from './ModalMarkup';
 
-const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, cards, tomorrowFormatted, twoWeeksLaterFormatted }) => {
+const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, filteredCards, tomorrowFormatted, twoWeeksLaterFormatted }) => {
   // debugger
 
   const [searchCity, setSearchCity] = useState('');
@@ -44,7 +43,8 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
   }
 
   const handleNameCityChange = e => {
-    setSearchCity(e.currentTarget.value.toLowerCase())
+    const inputText = e.currentTarget.value;
+    setSearchCity(inputText.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '))
   }
 
   const handleStartDateChange = e => {
@@ -70,9 +70,6 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
           <h4>Create trip</h4>
           <button className={s.btn_close} onClick={closeModal}>❌</button>
         </div>
-
-        {/* <CityAutocomplete cities={cards} /> */}
-
         <span className={s.border_line_top}></span>
 
         <form onSubmit={handleSubmit}>
@@ -87,8 +84,8 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
                 onChange={handleNameCityChange}
                 list="cities" />
               <datalist id="cities">
-                {cards.map((city) => (
-                  <option key={v1()} value={city.cityName} label={city.cityName} />
+                {filteredCards.map((city) => (
+                  <option key={v1()} value={city.cityName} />
                 ))}
               </datalist>
             </div>

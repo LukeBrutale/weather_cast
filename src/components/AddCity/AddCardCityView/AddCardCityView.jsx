@@ -5,6 +5,8 @@ import { v1 } from 'uuid'
 const AddCardCityView = ({ removeCard, filteredCards, filterCityWeather }) => {
   // debugger
 
+
+
   return (
     <>
       {filteredCards.map(card => (
