@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import s from './Modal.module.css'
+import { useState } from 'react';
+import s from './Modal.module.css';
+import { v1 } from "uuid";
 
-// import CityInput from './CityInput'
+import CityAutocomplete from './ModalMarkup';
 
 const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, cards, tomorrowFormatted, twoWeeksLaterFormatted }) => {
   // debugger
@@ -11,29 +12,35 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
   const [endDate, setEndDate] = useState('');
 
   const currentDateString = new Date().toISOString().split("T")[0];
-  // console.log(currentDateString)
   const twoWeeksLaterFormattedFirst = twoWeeksLaterFormatted(currentDateString);
 
   const anotherDateString = startDate;
   const twoWeeksLaterFormattedSecond = twoWeeksLaterFormatted(anotherDateString);
 
   const classes = s.modal + ' ' + s.modal_active;
-  // const selectedCityInfo = cards.find((city) => city.cityName === searchCity);
 
+  const clearInput = () => {
+    setSearchCity('');
+    setStartDate('');
+    setEndDate('')
+  }
 
   const closeModal = () => {
     setModalActive(false);
+    clearInput();
   }
 
   const keyPressEsc = (e) => {
     if (e.key === "Escape") {
-      setModalActive(false)
+      setModalActive(false);
+      clearInput();
     }
   }
 
   const handleAddCard = () => {
     addCard(searchCity, startDate, endDate);
     setModalActive(false);
+    clearInput();
   }
 
   const handleNameCityChange = e => {
@@ -53,9 +60,6 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
     onSubmit(searchCity);
     onChangeStartDate(startDate);
     onChangeEndDate(endDate);
-    setSearchCity('');
-    setStartDate('');
-    setEndDate('')
   }
 
 
@@ -66,6 +70,8 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
           <h4>Create trip</h4>
           <button className={s.btn_close} onClick={closeModal}>❌</button>
         </div>
+
+        {/* <CityAutocomplete cities={cards} /> */}
 
         <span className={s.border_line_top}></span>
 
@@ -81,16 +87,10 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
                 onChange={handleNameCityChange}
                 list="cities" />
               <datalist id="cities">
-                {cards.map((city, index) => (
-                  <option key={index} value={city.cityName} label={city.cityName} />
+                {cards.map((city) => (
+                  <option key={v1()} value={city.cityName} label={city.cityName} />
                 ))}
               </datalist>
-              {/* {selectedCityInfo && (
-                <div>
-                  <h2>{selectedCityInfo.cityName}</h2>
-                  <img src={selectedCityInfo.img} alt={selectedCityInfo.cityName} />
-                </div>
-              )} */}
             </div>
             <div>
               <label><span className={s.required_field}>*</span>Start date</label>
@@ -114,12 +114,11 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
             </div>
           </div>
           <span className={s.border_line_bottom}></span>
-          <div className={s.btn_modal}>
-            <button onClick={closeModal}>Cancel</button>
-            <button type="submit" onClick={handleAddCard} >Save</button>
-          </div>
         </form>
-
+        <div className={s.btn_modal}>
+          <button className={s.btn_modal_close} onClick={closeModal}>Cancel</button>
+          <button type="submit" onClick={handleAddCard} >Save</button>
+        </div>
       </div>
     </div>
   )

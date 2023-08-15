@@ -10,6 +10,7 @@ import SearchCity from "./components/SearchCity/SearchCity";
 import AddCity from "./components/AddCity/AddCity";
 import Modal from "./components/Modal/Modal";
 import SideBar from "./components/SideBar/SideBar";
+import CityAutocomplete from "./components/Modal/ModalMarkup";
 
 function App() {
   // debugger;
@@ -17,7 +18,7 @@ function App() {
   const [cards, setCards] = useState(
     JSON.parse(localStorage.getItem("userData")) ?? [
       { id: v1(), cityName: "London", startDate: "2023-08-16", endDate: "2023-08-18", img: "https://image.arrivalguides.com/500x500/09/1dd23cc06c31c31ba7df72f2c74db5bc.jpg" },
-      { id: v1(), cityName: "Kyiv", startDate: "2023-08-15", endDate: "2023-08-20", img: "https://visitukraine.today/media/blog/previews/fAWjVMXYLXywGzneHknrh9tuBRtdH12vJjT5awRu.webp" },
+      { id: v1(), cityName: "Kyiv", startDate: "2023-08-16", endDate: "2023-08-20", img: "https://visitukraine.today/media/blog/previews/fAWjVMXYLXywGzneHknrh9tuBRtdH12vJjT5awRu.webp" },
       { id: v1(), cityName: "Los Angeles", startDate: "2023-08-20", endDate: "2023-08-25", img: "https://griffithobservatory.org/wp-content/uploads/2021/12/cameron-venti-6QDvwq2Fjsc-unsplash-scaled.jpg" },
     ],
   );
@@ -66,7 +67,6 @@ function App() {
     } else {
       inputDate = new Date(inputDate);
     }
-
     const twoWeeksLater = new Date(inputDate);
     twoWeeksLater.setDate(inputDate.getDate() + 14);
     const twoWeeksLaterFormatted = twoWeeksLater.toISOString().split("T")[0];
@@ -84,6 +84,7 @@ function App() {
       <AddCity searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
       <SideBar searchCity={searchCity} startDate={startDate} />
       <Modal modalActive={modalActive} setModalActive={setModalActive} onSubmit={setSearchCity} onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} addCard={addCard} cards={cards} tomorrowFormatted={tomorrowFormatted} twoWeeksLaterFormatted={twoWeeksLaterFormatted} />
+      <CityAutocomplete cities={cards} />
       <ToastContainer autoClose={3000} theme="dark" />
     </div>
   );
