@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { v1 } from "uuid";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import cityImg from "./services/cityImgage";
+import cityImg from "./services/cityImage";
 
 import Header from "./components/Header/Header";
 import SearchCity from "./components/SearchCity/SearchCity";
@@ -92,7 +92,7 @@ function App() {
       <SearchCity cities={cards} updateFilteredCards={updateFilteredCards} />
       <AddCity searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
       <SideBar searchCity={searchCity} startDate={startDate} />
-      <Modal modalActive={modalActive} setModalActive={setModalActive} onSubmit={setSearchCity} onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} addCard={addCard} filteredCards={filteredCards} tomorrowFormatted={tomorrowFormatted} twoWeeksLaterFormatted={twoWeeksLaterFormatted} />
+      <Modal modalActive={modalActive} setModalActive={setModalActive} onSubmit={setSearchCity} onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} addCard={addCard} tomorrowFormatted={tomorrowFormatted} twoWeeksLaterFormatted={twoWeeksLaterFormatted} />
       <ToastContainer autoClose={3000} theme="dark" />
     </div>
   );

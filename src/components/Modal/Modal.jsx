@@ -2,8 +2,11 @@ import { useState } from 'react';
 import s from './Modal.module.css';
 import { v1 } from "uuid";
 
+import cityImg from '../../services/cityImage';
 
-const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, filteredCards, tomorrowFormatted, twoWeeksLaterFormatted }) => {
+
+
+const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, tomorrowFormatted, twoWeeksLaterFormatted }) => {
   // debugger
 
   const [searchCity, setSearchCity] = useState('');
@@ -84,7 +87,7 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
                 onChange={handleNameCityChange}
                 list="cities" />
               <datalist id="cities">
-                {filteredCards.map((city) => (
+                {cityImg.map((city) => (
                   <option key={v1()} value={city.cityName} />
                 ))}
               </datalist>
