@@ -1,6 +1,6 @@
 .container {
   grid-area: country;
-  height: 400px;
+  height: 320px;
   display: flex;
   overflow-x: auto;
 

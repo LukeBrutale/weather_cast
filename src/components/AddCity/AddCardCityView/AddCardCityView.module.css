@@ -2,6 +2,7 @@
   margin: 0 20px;
   cursor: pointer;
   border: 1px solid transparent;
+  max-height: 300px;
   /* width: 200px;
   height: 200px;
   transform: rotate(90deg);
