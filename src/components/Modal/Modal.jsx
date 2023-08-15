@@ -5,7 +5,6 @@ import { v1 } from "uuid";
 import cityImg from '../../services/cityImage';
 
 
-
 const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, tomorrowFormatted, twoWeeksLaterFormatted }) => {
   // debugger
 

@@ -6,7 +6,6 @@ const AddCardCityView = ({ removeCard, filteredCards, filterCityWeather }) => {
   // debugger
 
 
-
   return (
     <>
       {filteredCards.map(card => (

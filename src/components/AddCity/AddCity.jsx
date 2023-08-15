@@ -32,8 +32,6 @@ function AddCity({ searchCity, setModalActive, startDate, endDate, removeCard, f
   }, [searchCity, startDate, endDate])
 
 
-
-
   if (status === 'idle') {
     return <AddCardCity setModalActive={setModalActive} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
   }
