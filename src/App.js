@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { v1 } from "uuid";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import cityImg from "./services/cityImgage";
 
 import Header from "./components/Header/Header";
 import SearchCity from "./components/SearchCity/SearchCity";
@@ -41,7 +42,7 @@ function App() {
   function addCard(cityName, startDate, endDate) {
     // debugger;
     function getCityImg(cityName) {
-      const card = cards.find(card => card.cityName === cityName);
+      const card = cityImg.find(card => card.cityName === cityName);
       if (card && card.img) {
         return card.img;
       } else {
