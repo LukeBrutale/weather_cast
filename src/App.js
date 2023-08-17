@@ -12,12 +12,14 @@ import AddCity from "./components/AddCity/AddCity";
 import Modal from "./components/Modal/Modal";
 import SideBar from "./components/SideBar/SideBar";
 
+const defaultImg = "https://media.istockphoto.com/id/1206575314/fr/vectoriel/image-non-disponible-ic%C3%B4ne.jpg?s=170667a&w=0&k=20&c=12KccDH9dWe-WD9IPmS25ik_-rZfd8qUxujILlYG-Uo=";
+
 function App() {
   // debugger;
 
   const [cards, setCards] = useState(
     JSON.parse(localStorage.getItem("userData")) ?? [
-      { id: v1(), cityName: "London", startDate: "2023-08-16", endDate: "2023-08-18", img: "https://image.arrivalguides.com/500x500/09/1dd23cc06c31c31ba7df72f2c74db5bc.jpg" },
+      { id: v1(), cityName: "London", startDate: "2023-08-18", endDate: "2023-08-22", img: "https://image.arrivalguides.com/500x500/09/1dd23cc06c31c31ba7df72f2c74db5bc.jpg" },
       { id: v1(), cityName: "Kyiv", startDate: "2023-08-16", endDate: "2023-08-20", img: "https://visitukraine.today/media/blog/previews/fAWjVMXYLXywGzneHknrh9tuBRtdH12vJjT5awRu.webp" },
       { id: v1(), cityName: "Los Angeles", startDate: "2023-08-20", endDate: "2023-08-25", img: "https://griffithobservatory.org/wp-content/uploads/2021/12/cameron-venti-6QDvwq2Fjsc-unsplash-scaled.jpg" },
     ],
@@ -40,13 +42,12 @@ function App() {
   }
 
   function addCard(cityName, startDate, endDate) {
-    // debugger;
     function getCityImg(cityName) {
       const card = cityImg.find(card => card.cityName === cityName);
       if (card && card.img) {
         return card.img;
       } else {
-        return "https://media.istockphoto.com/id/1206575314/fr/vectoriel/image-non-disponible-ic%C3%B4ne.jpg?s=170667a&w=0&k=20&c=12KccDH9dWe-WD9IPmS25ik_-rZfd8qUxujILlYG-Uo=";
+        return defaultImg;
       }
     }
     let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: getCityImg(cityName) };
