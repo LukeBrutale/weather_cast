@@ -37,7 +37,7 @@ function App() {
 
   function removeCard(id) {
     let filteredCards = cards.filter(card => card.id !== id);
-    setCards(filteredCards);
+    // setCards(filteredCards);
     setFilteredCards(filteredCards);
   }
 

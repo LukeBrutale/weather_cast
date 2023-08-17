@@ -26,7 +26,7 @@ function WeatherWeekView({ request }) {
     <div >
       <h3 className={s.week}>Week</h3>
       <ul className={s.horizontal_scroll_container} >
-        {request.days.map(entry => (
+        {request && request.days.map(entry => (
           <li className={s.item} key={v1()}>
             <h4>{new Date(entry.datetime).toLocaleString('en-US', options)}</h4>
             <img src={`/weather_cast/${entry.icon}.svg`} alt={entry.conditions} />
