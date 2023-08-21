@@ -25,10 +25,10 @@ function App() {
     ],
   );
 
-  const [searchCity, setSearchCity] = useState(cards[0].cityName);
+  const [searchCity, setSearchCity] = useState(cards.length > 0 ? cards[0].cityName : "");
   const [modalActive, setModalActive] = useState(false);
-  const [startDate, setStartDate] = useState(cards[0].startDate);
-  const [endDate, setEndDate] = useState(cards[0].endDate);
+  const [startDate, setStartDate] = useState(cards.length > 0 ? cards[0].startDate : "");
+  const [endDate, setEndDate] = useState(cards.length > 0 ? cards[0].endDate : "");
   const [filteredCards, setFilteredCards] = useState(cards);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function App() {
 
   function removeCard(id) {
     let filteredCards = cards.filter(card => card.id !== id);
-    // setCards(filteredCards);
+    setCards(filteredCards);
     setFilteredCards(filteredCards);
   }
 
