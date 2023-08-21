@@ -5,22 +5,6 @@ import { v1 } from 'uuid'
 function WeatherWeekView({ request }) {
   const options = { weekday: 'long' };
 
-  // const [scrollPosition, setScrollPosition] = useState(0);
-  // const handleWheel = (e) => {
-  //   const container = e.currentTarget;
-  //   const scrollAmount = 50; // Змініть це значення на бажане
-
-  //   if (e.deltaX !== 0) {
-  //     // Забороняємо вертикальний скролл
-  //     e.preventDefault();
-
-  //     // Оновлюємо позицію прокрутки залежно від значення deltaX
-  //     setScrollPosition(scrollPosition + e.deltaX * scrollAmount);
-
-  //     // Зміщуємо прокрутку контейнера
-  //     container.scrollLeft = scrollPosition + e.deltaX * scrollAmount;
-  //   }
-  // };
 
   return (
     <div >
@@ -37,22 +21,6 @@ function WeatherWeekView({ request }) {
     </div>
   )
 
-
-  //   return (
-  //     <div
-  //       className="horizontal-scroll-container"
-  //       onWheel={handleWheel}
-  //     >
-  //       <div className="content">
-  //         <div></div>
-  //         <div></div>
-  //         <div></div>
-  //         <div></div>
-  //         <div></div>
-  //         <div></div>
-  //       </div>
-  //     </div>
-  //   );
 };
 
 

@@ -17,23 +17,32 @@ const defaultImg = "https://media.istockphoto.com/id/1206575314/fr/vectoriel/ima
 function App() {
   // debugger;
 
+  const dateStart = addDays(new Date(), 2).toISOString().split("T")[0];
+  const dateEnd = addDays(new Date(), 5).toISOString().split("T")[0];
+
   const [cards, setCards] = useState(
     JSON.parse(localStorage.getItem("userData")) ?? [
-      { id: v1(), cityName: "London", startDate: "2023-08-18", endDate: "2023-08-22", img: "https://image.arrivalguides.com/500x500/09/1dd23cc06c31c31ba7df72f2c74db5bc.jpg" },
-      { id: v1(), cityName: "Kyiv", startDate: "2023-08-16", endDate: "2023-08-20", img: "https://visitukraine.today/media/blog/previews/fAWjVMXYLXywGzneHknrh9tuBRtdH12vJjT5awRu.webp" },
-      { id: v1(), cityName: "Los Angeles", startDate: "2023-08-20", endDate: "2023-08-25", img: "https://griffithobservatory.org/wp-content/uploads/2021/12/cameron-venti-6QDvwq2Fjsc-unsplash-scaled.jpg" },
+      { id: v1(), cityName: "London", startDate: dateStart, endDate: dateEnd, img: getCityImg("London") },
+      { id: v1(), cityName: "Kyiv", startDate: dateStart, endDate: dateEnd, img: getCityImg("Kyiv") },
+      { id: v1(), cityName: "Los Angeles", startDate: dateStart, endDate: dateEnd, img: getCityImg("Los Angeles") },
     ],
   );
 
   const [searchCity, setSearchCity] = useState(cards.length > 0 ? cards[0].cityName : "");
-  const [modalActive, setModalActive] = useState(false);
   const [startDate, setStartDate] = useState(cards.length > 0 ? cards[0].startDate : "");
   const [endDate, setEndDate] = useState(cards.length > 0 ? cards[0].endDate : "");
+  const [modalActive, setModalActive] = useState(false);
   const [filteredCards, setFilteredCards] = useState(cards);
 
   useEffect(() => {
     localStorage.setItem("userData", JSON.stringify(cards));
   }, [cards]);
+
+  function addDays(date, days) {
+    const newDate = new Date(date);
+    newDate.setDate(date.getDate() + days);
+    return newDate;
+  }
 
   function removeCard(id) {
     let filteredCards = cards.filter(card => card.id !== id);
@@ -41,15 +50,16 @@ function App() {
     setFilteredCards(filteredCards);
   }
 
-  function addCard(cityName, startDate, endDate) {
-    function getCityImg(cityName) {
-      const card = cityImg.find(card => card.cityName === cityName);
-      if (card && card.img) {
-        return card.img;
-      } else {
-        return defaultImg;
-      }
+  function getCityImg(cityName) {
+    const card = cityImg.find(card => card.cityName === cityName);
+    if (card && card.img) {
+      return card.img;
+    } else {
+      return defaultImg;
     }
+  }
+
+  function addCard(cityName, startDate, endDate) {
     let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: getCityImg(cityName) };
     let newCityCard = [newCard, ...cards];
     setCards(newCityCard);
