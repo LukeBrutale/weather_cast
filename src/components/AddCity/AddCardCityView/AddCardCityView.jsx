@@ -1,4 +1,5 @@
 import s from './AddCardCityView.module.css'
+import React, { useState } from 'react';
 import { v1 } from 'uuid'
 
 
@@ -6,10 +7,20 @@ const AddCardCityView = ({ removeCard, filteredCards, filterCityWeather }) => {
   // debugger
 
 
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    setIsActive(!isActive);
+  };
+
+  const cardClasses = `${s.card} ${isActive ? s.activeCard : ''}`;
+
   return (
     <>
       {filteredCards.map(card => (
-        <div className={s.container} key={v1()} onClick={() => { filterCityWeather(card.id) }}>
+        <div className={cardClasses} key={v1()}
+          onClick={handleClick}
+          onMouseDown={() => { filterCityWeather(card.id) }}>
           <img src={card.img} alt='' className={s.img_city} />
           <div className={s.city_date_name}>
             <h5 className={s.city}>{card.cityName}</h5>
