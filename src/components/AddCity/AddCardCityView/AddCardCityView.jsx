@@ -6,15 +6,16 @@ import { v1 } from 'uuid'
 const AddCardCityView = React.memo(({ removeCard, filteredCards, filterCityWeather }) => {
   // debugger
 
-  const [activeCard, setActiveCard] = useState(null);
+  const [activeCard, setActiveCard] = useState('');
 
   return (
     <>
       {filteredCards.map(card => (
         <div className={`${s.card} ${activeCard === card.id ? s.active : ''}`} key={v1()}
           onClick={() => {
-            filterCityWeather(card.id);
+
             setActiveCard(card.id);
+            filterCityWeather(card.id);
           }}>
           <img src={card.img} alt='' className={s.img_city} />
           <div className={s.city_date_name}>
