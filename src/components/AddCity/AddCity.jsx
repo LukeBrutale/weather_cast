@@ -15,6 +15,7 @@ function AddCity({ searchCity, setModalActive, startDate, endDate, removeCard, f
   const [status, setStatus] = useState('idle')
 
 
+
   useEffect(() => {
     if (!searchCity) {
       return;
@@ -32,8 +33,15 @@ function AddCity({ searchCity, setModalActive, startDate, endDate, removeCard, f
   }, [searchCity, startDate, endDate])
 
 
+
+
   if (status === 'idle') {
-    return <AddCardCity setModalActive={setModalActive} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
+    return <AddCardCity
+      setModalActive={setModalActive}
+      removeCard={removeCard}
+      filteredCards={filteredCards}
+      filterCityWeather={filterCityWeather}
+    />
   }
 
   if (status === 'pending') {
@@ -47,7 +55,12 @@ function AddCity({ searchCity, setModalActive, startDate, endDate, removeCard, f
   if (status === 'resolved') {
     return (
       <>
-        <AddCardCity setModalActive={setModalActive} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
+        <AddCardCity
+          setModalActive={setModalActive}
+          removeCard={removeCard}
+          filteredCards={filteredCards}
+          filterCityWeather={filterCityWeather}
+        />
         <WeatherWeekView request={request} />
       </>
     )

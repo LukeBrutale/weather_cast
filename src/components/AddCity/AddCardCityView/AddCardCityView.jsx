@@ -3,24 +3,19 @@ import React, { useState } from 'react';
 import { v1 } from 'uuid'
 
 
-const AddCardCityView = ({ removeCard, filteredCards, filterCityWeather }) => {
+const AddCardCityView = React.memo(({ removeCard, filteredCards, filterCityWeather }) => {
   // debugger
 
-
-  const [isActive, setIsActive] = useState(false);
-
-  const handleClick = () => {
-    setIsActive(!isActive);
-  };
-
-  const cardClasses = `${s.card} ${isActive ? s.activeCard : ''}`;
+  const [activeCard, setActiveCard] = useState(null);
 
   return (
     <>
       {filteredCards.map(card => (
-        <div className={cardClasses} key={v1()}
-          onClick={handleClick}
-          onMouseDown={() => { filterCityWeather(card.id) }}>
+        <div className={`${s.card} ${activeCard === card.id ? s.active : ''}`} key={v1()}
+          onClick={() => {
+            filterCityWeather(card.id);
+            setActiveCard(card.id);
+          }}>
           <img src={card.img} alt='' className={s.img_city} />
           <div className={s.city_date_name}>
             <h5 className={s.city}>{card.cityName}</h5>
@@ -32,10 +27,6 @@ const AddCardCityView = ({ removeCard, filteredCards, filterCityWeather }) => {
       ))}
     </>
   )
-}
+})
 
 export default AddCardCityView;
-
-
-
-
