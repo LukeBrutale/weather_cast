@@ -5,6 +5,7 @@ import React from 'react';
 
 const AddCardCityView = React.memo(({ activeCard, removeCard, filteredCards, filterCityWeather, setActiveCard }) => {
   // debugger
+  console.log(activeCard)
 
   return (
     <>

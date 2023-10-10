@@ -5,9 +5,10 @@ import AddCardCityView from '../AddCardCityView/AddCardCityView'
 
 const AddCardCity = React.memo(({ setModalActive, removeCard, filteredCards, filterCityWeather }) => {
   // debugger
-  // console.log(setModalActive)
+
 
   const [activeCard, setActiveCard] = useState(null);
+  // console.log(activeCard)
 
 
   const openModal = () => {
