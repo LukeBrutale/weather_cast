@@ -40,7 +40,7 @@ function AddCity({ searchCity, setModalActive, startDate, endDate, removeCard, f
       setModalActive={setModalActive}
       removeCard={removeCard}
       filteredCards={filteredCards}
-    // filterCityWeather={filterCityWeather}
+      filterCityWeather={filterCityWeather}
     />
   }
 

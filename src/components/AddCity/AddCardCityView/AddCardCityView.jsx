@@ -1,21 +1,18 @@
 import s from './AddCardCityView.module.css'
-import React, { useState } from 'react';
-import { v1 } from 'uuid'
+import React from 'react';
+// import { v1 } from 'uuid'
 
 
-const AddCardCityView = React.memo(({ removeCard, filteredCards, filterCityWeather }) => {
+const AddCardCityView = React.memo(({ activeCard, removeCard, filteredCards, filterCityWeather, setActiveCard }) => {
   // debugger
-
-  const [activeCard, setActiveCard] = useState('');
 
   return (
     <>
       {filteredCards.map(card => (
-        <div className={`${s.card} ${activeCard === card.id ? s.active : ''}`} key={v1()}
+        <div className={`${s.card} ${activeCard === card.id ? s.active : ''}`} key={card.id}
           onClick={() => {
-
-            setActiveCard(card.id);
             filterCityWeather(card.id);
+            setActiveCard(card.id);
           }}>
           <img src={card.img} alt='' className={s.img_city} />
           <div className={s.city_date_name}>
@@ -28,6 +25,6 @@ const AddCardCityView = React.memo(({ removeCard, filteredCards, filterCityWeath
       ))}
     </>
   )
-})
+});
 
 export default AddCardCityView;

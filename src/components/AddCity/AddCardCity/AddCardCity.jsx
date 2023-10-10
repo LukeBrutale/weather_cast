@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './AddCardCity.module.css'
 import AddCardCityView from '../AddCardCityView/AddCardCityView'
 
 
-const AddCardCity = ({ setModalActive, removeCard, filteredCards, filterCityWeather }) => {
+const AddCardCity = React.memo(({ setModalActive, removeCard, filteredCards, filterCityWeather }) => {
   // debugger
+  // console.log(setModalActive)
+
+  const [activeCard, setActiveCard] = useState(null);
+
 
   const openModal = () => {
     setModalActive(true)
@@ -13,6 +17,8 @@ const AddCardCity = ({ setModalActive, removeCard, filteredCards, filterCityWeat
   return (
     <div className={s.container}>
       <AddCardCityView
+        activeCard={activeCard}
+        setActiveCard={setActiveCard}
         removeCard={removeCard}
         filteredCards={filteredCards}
         filterCityWeather={filterCityWeather}
@@ -23,6 +29,6 @@ const AddCardCity = ({ setModalActive, removeCard, filteredCards, filterCityWeat
       </button>
     </div>
   )
-};
+});
 
 export default AddCardCity;
