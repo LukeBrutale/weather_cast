@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import WeatherWeekView from '../WeatherWeekView/WeathetWeekView';
 import PendingView from '../PendingView/PendingView';
@@ -8,7 +8,7 @@ import ErrorView from '../ErrorView/ErrorView';
 import api from '../../services/weatherWeekAPI'
 
 
-function AddCity({ searchCity, setModalActive, startDate, endDate, removeCard, filteredCards, filterCityWeather }) {
+const AddCity = ({ searchCity, setModalActive, startDate, endDate, removeCard, filteredCards, filterCityWeather }) => {
   // debugger
   const [request, setRequest] = useState(null);
   const [error, setError] = useState(null);
@@ -65,6 +65,6 @@ function AddCity({ searchCity, setModalActive, startDate, endDate, removeCard, f
       </>
     )
   }
-}
+};
 
 export default AddCity;

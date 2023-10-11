@@ -3,7 +3,7 @@ import s from './AddCardCity.module.css'
 import AddCardCityView from '../AddCardCityView/AddCardCityView'
 
 
-const AddCardCity = React.memo(({ setModalActive, removeCard, filteredCards, filterCityWeather }) => {
+const AddCardCity = ({ setModalActive, removeCard, filteredCards, filterCityWeather }) => {
   // debugger
 
 
@@ -30,6 +30,6 @@ const AddCardCity = React.memo(({ setModalActive, removeCard, filteredCards, fil
       </button>
     </div>
   )
-});
+};
 
 export default AddCardCity;

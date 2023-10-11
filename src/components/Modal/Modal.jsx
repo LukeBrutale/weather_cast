@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import s from './Modal.module.css';
+
+import { toast } from 'react-toastify';
 import { v1 } from "uuid";
 
 import cityImg from '../../services/cityImage';
@@ -39,14 +41,21 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
   }
 
   const handleAddCard = () => {
-    addCard(searchCity, startDate, endDate);
-    setModalActive(false);
-    clearInput();
+    if (!searchCity.trim() || !startDate || !endDate) {
+      toast("Enter the city, start and end date!");
+      return;
+    } else {
+      addCard(searchCity, startDate, endDate);
+      setModalActive(false);
+      clearInput();
+    }
   }
 
   const handleNameCityChange = e => {
     const inputText = e.currentTarget.value;
     setSearchCity(inputText.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '))
+
+
   }
 
   const handleStartDateChange = e => {

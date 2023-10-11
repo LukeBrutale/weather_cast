@@ -3,9 +3,9 @@ import React from 'react';
 // import { v1 } from 'uuid'
 
 
-const AddCardCityView = React.memo(({ activeCard, removeCard, filteredCards, filterCityWeather, setActiveCard }) => {
+const AddCardCityView = ({ activeCard, removeCard, filteredCards, filterCityWeather, setActiveCard }) => {
   // debugger
-  console.log(activeCard)
+  // console.log(activeCard)
 
   return (
     <>
@@ -26,6 +26,6 @@ const AddCardCityView = React.memo(({ activeCard, removeCard, filteredCards, fil
       ))}
     </>
   )
-});
+};
 
 export default AddCardCityView;
