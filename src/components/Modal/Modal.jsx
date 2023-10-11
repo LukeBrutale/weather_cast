@@ -54,8 +54,6 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
   const handleNameCityChange = e => {
     const inputText = e.currentTarget.value;
     setSearchCity(inputText.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '))
-
-
   }
 
   const handleStartDateChange = e => {

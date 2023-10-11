@@ -6,7 +6,7 @@ import s from './SearchCity.module.css'
 function SearchCity({ cities, updateFilteredCards }) {
   // debugger
   const [searchCity, setSearchCity] = useState('')
-  const [filtededCard, setFilteredCards] = useState(cities);
+  const [, setFilteredCards] = useState(cities);
 
   const handleNameChange = e => {
     const searchText = e.target.value;
