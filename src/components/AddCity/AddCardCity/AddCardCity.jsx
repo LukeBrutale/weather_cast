@@ -3,12 +3,21 @@ import s from './AddCardCity.module.css'
 import AddCardCityView from '../AddCardCityView/AddCardCityView'
 
 
+
 const AddCardCity = ({ setModalActive, removeCard, filteredCards, filterCityWeather }) => {
   // debugger
 
 
   const [activeCard, setActiveCard] = useState(null);
-  // console.log(activeCard)
+  const [scrollX, setScrollX] = useState(0);
+
+  const scrollLeft = () => {
+    setScrollX(scrollX - 150);
+  };
+
+  const scrollRight = () => {
+    setScrollX(scrollX + 150);
+  };
 
 
   const openModal = () => {
@@ -16,19 +25,23 @@ const AddCardCity = ({ setModalActive, removeCard, filteredCards, filterCityWeat
   }
 
   return (
-    <div className={s.container}>
-      <AddCardCityView
-        activeCard={activeCard}
-        setActiveCard={setActiveCard}
-        removeCard={removeCard}
-        filteredCards={filteredCards}
-        filterCityWeather={filterCityWeather}
-      />
-      <button className={s.btn_add_city} onClick={openModal} >
-        <span>🞥</span>
-        <h3>Add trip</h3>
-      </button>
-    </div>
+    <div className={s.horizontal_scroll_container}>
+      <button className={s.btnScroll} onClick={scrollLeft}>&#129192;</button>
+      <div className={s.container} style={{ transform: `translateX(${scrollX}px)` }}>
+        <AddCardCityView
+          activeCard={activeCard}
+          setActiveCard={setActiveCard}
+          removeCard={removeCard}
+          filteredCards={filteredCards}
+          filterCityWeather={filterCityWeather}
+        />
+        <button className={s.btn_add_city} onClick={openModal} >
+          <span>🞥</span>
+          <h3>Add trip</h3>
+        </button>
+      </div>
+      <button className={s.btnScroll} onClick={scrollRight}>&#129195;</button>
+    </div >
   )
 };
 

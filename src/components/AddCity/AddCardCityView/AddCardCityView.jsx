@@ -1,11 +1,12 @@
 import s from './AddCardCityView.module.css'
-import React from 'react';
+
 // import { v1 } from 'uuid'
 
 
 const AddCardCityView = ({ activeCard, removeCard, filteredCards, filterCityWeather, setActiveCard }) => {
   // debugger
   // console.log(activeCard)
+
 
   return (
     <>

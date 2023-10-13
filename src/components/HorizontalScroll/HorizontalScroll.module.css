@@ -1,0 +1,31 @@
+.horizontal_scroll_container {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+}
+
+.scrollable_content {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.item {
+  flex: 0 0 auto;
+  width: 200px; 
+  height: 200px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin: 5px;
+}
+
+
+button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+button:hover {
+  color: blue; 
+}

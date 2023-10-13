@@ -5,6 +5,7 @@ import PendingView from '../PendingView/PendingView';
 import AddCardCity from './AddCardCity/AddCardCity'
 import ErrorView from '../ErrorView/ErrorView';
 
+
 import api from '../../services/weatherWeekAPI'
 
 
@@ -36,12 +37,16 @@ const AddCity = ({ searchCity, setModalActive, startDate, endDate, removeCard, f
 
 
   if (status === 'idle') {
-    return <AddCardCity
-      setModalActive={setModalActive}
-      removeCard={removeCard}
-      filteredCards={filteredCards}
-      filterCityWeather={filterCityWeather}
-    />
+    return (
+      <>
+        <AddCardCity
+          setModalActive={setModalActive}
+          removeCard={removeCard}
+          filteredCards={filteredCards}
+          filterCityWeather={filterCityWeather}
+        />
+      </>
+    )
   }
 
   if (status === 'pending') {
