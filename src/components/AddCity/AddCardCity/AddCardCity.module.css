@@ -1,14 +1,14 @@
-.horizontal_scroll_container {
+/* .horizontal_scroll_container {
   display: flex;
   overflow: hidden;
   align-items: center;
-}
+} */
 
 .container {
   grid-area: country;
   height: 320px;
   display: flex;
-  overflow: auto;
+  overflow-x: auto;
   transition: transform 0.3s ease;
 
   padding: 10px;
