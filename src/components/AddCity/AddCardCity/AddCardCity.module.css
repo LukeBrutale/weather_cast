@@ -1,8 +1,4 @@
-/* .horizontal_scroll_container {
-  display: flex;
-  overflow: hidden;
-  align-items: center;
-} */
+
 
 .container {
   grid-area: country;

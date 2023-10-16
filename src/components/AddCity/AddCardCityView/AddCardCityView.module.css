@@ -1,3 +1,10 @@
+.horizontal_scroll_container {
+  display: flex; /* Використовуємо flex-контейнер для розміщення карточок в один ряд */
+  overflow-x: auto; /* Додаємо горизонтальний скролл */
+  white-space: nowrap; /* Запобігаємо переносу тексту */
+  width: 1200px; /* Ширина контейнера */
+}
+
 .card {
   margin: 0 20px;
   cursor: pointer;
