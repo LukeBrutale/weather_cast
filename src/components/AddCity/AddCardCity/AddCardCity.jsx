@@ -18,6 +18,10 @@ const AddCardCity = ({ setModalActive, removeCard, filteredCards, filterCityWeat
 
   return (
     <div className={s.container} >
+      <button className={s.btn_add_city} onClick={openModal} >
+        <span>🞥</span>
+        <h3>Add trip</h3>
+      </button>
       <AddCardCityView
         activeCard={activeCard}
         setActiveCard={setActiveCard}
@@ -25,10 +29,7 @@ const AddCardCity = ({ setModalActive, removeCard, filteredCards, filterCityWeat
         filteredCards={filteredCards}
         filterCityWeather={filterCityWeather}
       />
-      <button className={s.btn_add_city} onClick={openModal} >
-        <span>🞥</span>
-        <h3>Add trip</h3>
-      </button>
+
     </div>
   )
 };

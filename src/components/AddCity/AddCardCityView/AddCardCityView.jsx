@@ -23,8 +23,6 @@ const AddCardCityView = ({ activeCard, removeCard, filteredCards, filterCityWeat
     >
       {filteredCards.map(card => (
         <div className={`${s.card} ${activeCard === card.id ? s.active : ''}`} key={card.id}
-          onWheel={handleScroll} // Додавання обробника подій для обробки прокрутки мишкою
-          ref={containerRef}
           onClick={() => {
             filterCityWeather(card.id);
             setActiveCard(card.id);
@@ -43,5 +41,3 @@ const AddCardCityView = ({ activeCard, removeCard, filteredCards, filterCityWeat
 };
 
 export default AddCardCityView;
-
-// { `${s.card} ${activeCard === card.id ? s.active : ''}` }
