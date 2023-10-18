@@ -11,6 +11,7 @@ import SearchCity from "./components/SearchCity/SearchCity";
 import AddCity from "./components/AddCity/AddCity";
 import Modal from "./components/Modal/Modal";
 import SideBar from "./components/SideBar/SideBar";
+import SearchCityPhoto from "./components/SeacrhCityPhoto/SearchCityPhoto";
 
 const defaultImg = "https://media.istockphoto.com/id/1206575314/fr/vectoriel/image-non-disponible-ic%C3%B4ne.jpg?s=170667a&w=0&k=20&c=12KccDH9dWe-WD9IPmS25ik_-rZfd8qUxujILlYG-Uo=";
 
@@ -28,6 +29,7 @@ function App() {
     ],
   );
 
+  const [request, setRequest] = useState(null);
   const [searchCity, setSearchCity] = useState(cards.length > 0 ? cards[0].cityName : "");
   const [startDate, setStartDate] = useState(cards.length > 0 ? cards[0].startDate : "");
   const [endDate, setEndDate] = useState(cards.length > 0 ? cards[0].endDate : "");
@@ -59,11 +61,12 @@ function App() {
     }
   }
 
-  function addCard(cityName, startDate, endDate) {
+  function addCard(cityName, startDate, endDate, request) {
     let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: getCityImg(cityName) };
     let newCityCard = [newCard, ...cards];
     setCards(newCityCard);
     setFilteredCards(newCityCard);
+    setRequest(request);
   }
 
   function filterCityWeather(id) {
@@ -101,7 +104,8 @@ function App() {
     <div className="App">
       <Header />
       <SearchCity cities={cards} updateFilteredCards={updateFilteredCards} />
-      <AddCity searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
+      <SearchCityPhoto cityName={request.address} />
+      <AddCity request={request} searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
       <SideBar searchCity={searchCity} startDate={startDate} />
       <Modal modalActive={modalActive} setModalActive={setModalActive} onSubmit={setSearchCity} onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} addCard={addCard} tomorrowFormatted={tomorrowFormatted} twoWeeksLaterFormatted={twoWeeksLaterFormatted} />
       <ToastContainer autoClose={3000} theme="dark" />

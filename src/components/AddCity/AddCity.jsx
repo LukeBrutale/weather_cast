@@ -9,29 +9,29 @@ import ErrorView from '../ErrorView/ErrorView';
 import api from '../../services/weatherWeekAPI'
 
 
-const AddCity = ({ searchCity, setModalActive, startDate, endDate, removeCard, filteredCards, filterCityWeather }) => {
+const AddCity = ({ request, setModalActive, removeCard, filteredCards, filterCityWeather }) => {
   // debugger
-  const [request, setRequest] = useState(null);
+  // const [request, setRequest] = useState(null);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('idle')
 
 
 
-  useEffect(() => {
-    if (!searchCity) {
-      return;
-    }
-    setStatus('pending')
-    api.weatherWeekAPI(searchCity, startDate, endDate)
-      .then(request => {
-        setRequest(request);
-        setStatus('resolved')
-      })
-      .catch(error => {
-        setError(error);
-        setStatus('rejected')
-      })
-  }, [searchCity, startDate, endDate])
+  // useEffect(() => {
+  //   if (!searchCity) {
+  //     return;
+  //   }
+  //   setStatus('pending')
+  //   api.weatherWeekAPI(searchCity, startDate, endDate)
+  //     .then(request => {
+  //       setRequest(request);
+  //       setStatus('resolved')
+  //     })
+  //     .catch(error => {
+  //       setError(error);
+  //       setStatus('rejected')
+  //     })
+  // }, [searchCity, startDate, endDate])
 
 
 
@@ -45,31 +45,32 @@ const AddCity = ({ searchCity, setModalActive, startDate, endDate, removeCard, f
           filteredCards={filteredCards}
           filterCityWeather={filterCityWeather}
         />
+        <WeatherWeekView request={request} />
       </>
     )
   }
 
-  if (status === 'pending') {
-    return <PendingView searchCity={searchCity} />
-  }
+  // if (status === 'pending') {
+  //   return <PendingView searchCity={request.address} />
+  // }
 
   if (status === 'rejected') {
     return <ErrorView message={error.message} />
   }
 
-  if (status === 'resolved') {
-    return (
-      <>
-        <AddCardCity
-          setModalActive={setModalActive}
-          removeCard={removeCard}
-          filteredCards={filteredCards}
-          filterCityWeather={filterCityWeather}
-        />
-        <WeatherWeekView request={request} />
-      </>
-    )
-  }
+  // if (status === 'resolved') {
+  //   return (
+  //     <>
+  //       <AddCardCity
+  //         setModalActive={setModalActive}
+  //         removeCard={removeCard}
+  //         filteredCards={filteredCards}
+  //         filterCityWeather={filterCityWeather}
+  //       />
+  //       <WeatherWeekView request={request} />
+  //     </>
+  //   )
+  // }
 };
 
 export default AddCity;

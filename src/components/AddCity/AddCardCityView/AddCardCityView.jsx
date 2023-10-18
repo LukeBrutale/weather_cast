@@ -30,8 +30,7 @@ const AddCardCityView = ({ activeCard, removeCard, filteredCards, filterCityWeat
             <h5 className={s.city}>{card.cityName}</h5>
             <span className={s.date}>{new Date(card.startDate).toLocaleDateString()}</span>-
             <span className={s.date}>{new Date(card.endDate).toLocaleDateString()}</span>
-            <button className={s.btn_delete} onClick={(e) => { e.stopPropagation(); removeCard(card.id) }} >
-              &#10006;</button>
+            <button className={s.btn_delete} onClick={(e) => { e.stopPropagation(); removeCard(card.id) }} > &#10006;</button>
           </div>
         </div>
       ))}
