@@ -1,8 +1,6 @@
 import React, { useRef } from 'react';
 import s from './AddCardCityView.module.css'
 
-// import { v1 } from 'uuid'
-
 
 const AddCardCityView = ({ activeCard, removeCard, filteredCards, filterCityWeather, setActiveCard }) => {
   // debugger
