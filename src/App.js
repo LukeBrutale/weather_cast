@@ -104,7 +104,7 @@ function App() {
     <div className="App">
       <Header />
       <SearchCity cities={cards} updateFilteredCards={updateFilteredCards} />
-      <SearchCityPhoto cityName={request.address} />
+      <SearchCityPhoto cityName={request} />
       <AddCity request={request} searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
       <SideBar searchCity={searchCity} startDate={startDate} />
       <Modal modalActive={modalActive} setModalActive={setModalActive} onSubmit={setSearchCity} onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} addCard={addCard} tomorrowFormatted={tomorrowFormatted} twoWeeksLaterFormatted={twoWeeksLaterFormatted} />

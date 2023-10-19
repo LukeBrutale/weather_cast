@@ -3,7 +3,7 @@ import api from '../../services/cityPhotoAPI';
 
 function SearchCityPhoto({ cityName }) {
 
-  const [request, setRequest] = useState(null);
+  const [, setRequest] = useState(null);
 
 
   useEffect(() => {

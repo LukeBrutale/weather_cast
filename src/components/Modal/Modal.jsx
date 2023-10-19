@@ -11,7 +11,7 @@ import api from '../../services/weatherWeekAPI'
 const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, tomorrowFormatted, twoWeeksLaterFormatted }) => {
   // debugger
 
-  const [request, setRequest] = useState(null);
+  const [, setRequest] = useState(null);
   const [searchCity, setSearchCity] = useState('');
   const [startDate, setStartDate] = useState(tomorrowFormatted);
   const [endDate, setEndDate] = useState('');

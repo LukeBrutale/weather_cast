@@ -51,7 +51,7 @@ const AddCity = ({ request, setModalActive, removeCard, filteredCards, filterCit
   }
 
   // if (status === 'pending') {
-  //   return <PendingView searchCity={request.address} />
+  //   return <PendingView searchCity={request} />
   // }
 
   if (status === 'rejected') {

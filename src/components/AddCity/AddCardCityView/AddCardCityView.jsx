@@ -9,14 +9,15 @@ const AddCardCityView = ({ activeCard, removeCard, filteredCards, filterCityWeat
   const handleScroll = (e) => {
     const container = containerRef.current;
     if (container) {
-      container.scrollLeft += e.deltaY; // Прокручуємо контейнер на відстань, вказану у e.deltaY (зазвичай -100 або 100 на крок)
+      const scrollStep = 2;
+      container.scrollLeft += e.deltaY / scrollStep;
     }
   };
 
   return (
     <div
       className={s.horizontal_scroll_container}
-      onWheel={handleScroll} // Додавання обробника подій для обробки прокрутки мишкою
+      onWheel={handleScroll}
       ref={containerRef}
     >
       {filteredCards.map(card => (
