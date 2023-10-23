@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
-import WeatherWeekView from '../WeatherWeekView/WeathetWeekView';
-import PendingView from '../PendingView/PendingView';
+// import WeatherWeekView from '../WeatherWeekView/WeathetWeekView';
+// import PendingView from '../PendingView/PendingView';
 import AddCardCity from './AddCardCity/AddCardCity'
 import ErrorView from '../ErrorView/ErrorView';
 
 
-import api from '../../services/weatherWeekAPI'
+// import api from '../../services/weatherWeekAPI'
 
 
 const AddCity = ({ request, setModalActive, removeCard, filteredCards, filterCityWeather }) => {
@@ -45,7 +45,7 @@ const AddCity = ({ request, setModalActive, removeCard, filteredCards, filterCit
           filteredCards={filteredCards}
           filterCityWeather={filterCityWeather}
         />
-        <WeatherWeekView request={request} />
+        {/* <WeatherWeekView request={request} /> */}
       </>
     )
   }

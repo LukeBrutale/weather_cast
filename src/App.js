@@ -12,6 +12,7 @@ import AddCity from "./components/AddCity/AddCity";
 import Modal from "./components/Modal/Modal";
 import SideBar from "./components/SideBar/SideBar";
 import SearchCityPhoto from "./components/SeacrhCityPhoto/SearchCityPhoto";
+import WeatherWeekView from "./components/WeatherWeekView/WeathetWeekView";
 
 const defaultImg = "https://media.istockphoto.com/id/1206575314/fr/vectoriel/image-non-disponible-ic%C3%B4ne.jpg?s=170667a&w=0&k=20&c=12KccDH9dWe-WD9IPmS25ik_-rZfd8qUxujILlYG-Uo=";
 
@@ -104,8 +105,9 @@ function App() {
     <div className="App">
       <Header />
       <SearchCity cities={cards} updateFilteredCards={updateFilteredCards} />
-      <SearchCityPhoto cityName={request} />
+      <SearchCityPhoto searchCity={searchCity} />
       <AddCity request={request} searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
+      <WeatherWeekView searchCity={searchCity} startDate={startDate} endDate={endDate} />
       <SideBar searchCity={searchCity} startDate={startDate} />
       <Modal modalActive={modalActive} setModalActive={setModalActive} onSubmit={setSearchCity} onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} addCard={addCard} tomorrowFormatted={tomorrowFormatted} twoWeeksLaterFormatted={twoWeeksLaterFormatted} />
       <ToastContainer autoClose={3000} theme="dark" />

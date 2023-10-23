@@ -5,13 +5,13 @@ import { toast } from 'react-toastify';
 import { v1 } from "uuid";
 
 import cityImg from '../../services/cityImage';
-import api from '../../services/weatherWeekAPI'
+// import api from '../../services/weatherWeekAPI'
 
 
 const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onChangeEndDate, addCard, tomorrowFormatted, twoWeeksLaterFormatted }) => {
   // debugger
 
-  const [, setRequest] = useState(null);
+  // const [, setRequest] = useState(null);
   const [searchCity, setSearchCity] = useState('');
   const [startDate, setStartDate] = useState(tomorrowFormatted);
   const [endDate, setEndDate] = useState('');
@@ -47,12 +47,7 @@ const Modal = ({ modalActive, setModalActive, onSubmit, onChangeStartDate, onCha
       toast("Enter the city, start and end date!");
       return;
     } else {
-      api.weatherWeekAPI(searchCity, startDate, endDate)
-        .then(request => {
-          setRequest(request);
-          addCard(searchCity, startDate, endDate, request);
-          console.log(request)
-        })
+      addCard(searchCity, startDate, endDate,);
       setModalActive(false);
       clearInput();
     }

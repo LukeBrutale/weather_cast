@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
 import api from '../../services/cityPhotoAPI';
 
-function SearchCityPhoto({ cityName }) {
+function SearchCityPhoto({ searchCity }) {
 
   const [, setRequest] = useState(null);
 
 
   useEffect(() => {
-    if (!cityName) {
+    if (!searchCity) {
       return;
     }
 
-    api.fetchAPI(cityName.address)
+    api.fetchAPI(searchCity)
       .then(request => {
         setRequest(request);
       })
     // .catch(error => {
     //   setError(error);
     // })
-  }, [cityName])
+  }, [searchCity])
 }
 
 export default SearchCityPhoto;

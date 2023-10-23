@@ -6,6 +6,7 @@
   right: 15%;
   left: 15%;
   display: flex;
+  justify-content: center;
 }
 
 .section_numbers {
