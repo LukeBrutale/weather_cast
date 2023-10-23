@@ -8,7 +8,7 @@ import api from '../../services/weatherWeekAPI'
 function WeatherWeekView({ searchCity, startDate, endDate }) {
   const options = { weekday: 'long' };
   const [weather, setWeather] = useState(null);
-  const [error, setError] = useState(null)
+  const [, setError] = useState(null)
 
 
   useEffect(() => {

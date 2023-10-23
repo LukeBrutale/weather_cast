@@ -14,7 +14,7 @@ import SideBar from "./components/SideBar/SideBar";
 import SearchCityPhoto from "./components/SeacrhCityPhoto/SearchCityPhoto";
 import WeatherWeekView from "./components/WeatherWeekView/WeathetWeekView";
 
-const defaultImg = "https://media.istockphoto.com/id/1206575314/fr/vectoriel/image-non-disponible-ic%C3%B4ne.jpg?s=170667a&w=0&k=20&c=12KccDH9dWe-WD9IPmS25ik_-rZfd8qUxujILlYG-Uo=";
+// const defaultImg = "https://media.istockphoto.com/id/1206575314/fr/vectoriel/image-non-disponible-ic%C3%B4ne.jpg?s=170667a&w=0&k=20&c=12KccDH9dWe-WD9IPmS25ik_-rZfd8qUxujILlYG-Uo=";
 
 function App() {
   // debugger;
@@ -54,20 +54,21 @@ function App() {
   }
 
   function getCityImg(cityName) {
+    console.log(cityName);
     const card = cityImg.find(card => card.cityName === cityName);
     if (card && card.img) {
       return card.img;
     } else {
-      return defaultImg;
+      return "https://images.pexels.com/photos/3496763/pexels-photo-3496763.jpeg";
     }
   }
 
-  function addCard(cityName, startDate, endDate, request) {
+  function addCard(cityName, startDate, endDate) {
     let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: getCityImg(cityName) };
     let newCityCard = [newCard, ...cards];
     setCards(newCityCard);
     setFilteredCards(newCityCard);
-    setRequest(request);
+    setRequest(cityName);
   }
 
   function filterCityWeather(id) {
@@ -105,8 +106,8 @@ function App() {
     <div className="App">
       <Header />
       <SearchCity cities={cards} updateFilteredCards={updateFilteredCards} />
-      <SearchCityPhoto searchCity={searchCity} />
-      <AddCity request={request} searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
+      <SearchCityPhoto searchCityName={request} getCityImg={getCityImg} />
+      <AddCity searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
       <WeatherWeekView searchCity={searchCity} startDate={startDate} endDate={endDate} />
       <SideBar searchCity={searchCity} startDate={startDate} />
       <Modal modalActive={modalActive} setModalActive={setModalActive} onSubmit={setSearchCity} onChangeStartDate={setStartDate} onChangeEndDate={setEndDate} addCard={addCard} tomorrowFormatted={tomorrowFormatted} twoWeeksLaterFormatted={twoWeeksLaterFormatted} />
