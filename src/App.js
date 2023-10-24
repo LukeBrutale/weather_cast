@@ -31,6 +31,7 @@ function App() {
   );
 
   const [request, setRequest] = useState(null);
+  // console.log(request);
   const [searchCity, setSearchCity] = useState(cards.length > 0 ? cards[0].cityName : "");
   const [startDate, setStartDate] = useState(cards.length > 0 ? cards[0].startDate : "");
   const [endDate, setEndDate] = useState(cards.length > 0 ? cards[0].endDate : "");
@@ -53,21 +54,23 @@ function App() {
     setFilteredCards(filteredCards);
   }
 
-  function getCityImg(cityName) {
-    console.log(cityName);
+  let urlImg;
+  async function getCityImg(cityName) {
+    // console.log(cityName);
     const card = cityImg.find(card => card.cityName === cityName);
     if (card && card.img) {
-      return Promise.resolve(card.img);
-    } else if (cityName && cityName.photos && cityName.photos[0] && cityName.photos[0].src && cityName.photos[0].src.medium) {
-      console.log(cityName.photos[0].src.medium);
-      return Promise.resolve(cityName.photos[0].src.medium);
+      return card.img;
+    } else if (cityName.photos && cityName.photos[0] && cityName.photos[0].src && cityName.photos[0].src.medium) {
+      urlImg = cityName.photos[0].src.medium;
+      // console.log(urlImg);
     } else {
-      return Promise.resolve(defaultImg);
+      return defaultImg;
     }
   }
 
   function addCard(cityName, startDate, endDate) {
-    let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: getCityImg(cityName) };
+    let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: urlImg };
+    console.log(urlImg);
     let newCityCard = [newCard, ...cards];
     setCards(newCityCard);
     setFilteredCards(newCityCard);
