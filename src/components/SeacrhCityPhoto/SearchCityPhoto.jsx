@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import api from '../../services/cityPhotoAPI';
 
 function SearchCityPhoto({ searchCityName, getCityImg }) {
-  // console.log(searchCityName)
-
   const [request, setRequest] = useState(null);
-
+  const [imageURL, setImageURL] = useState(null);
+  // console.log(imageURL)
+  // console.log(request)
 
   useEffect(() => {
     if (!searchCityName) {
@@ -14,15 +14,23 @@ function SearchCityPhoto({ searchCityName, getCityImg }) {
     api.fetchAPI(searchCityName)
       .then(request => {
         setRequest(request);
+        getCityImg(request)
+          .then(imgUrl => {
+            setImageURL(imgUrl); // Зберігаємо URL фото в стані
+          })
+          .catch(error => {
+            console.error('Помилка отримання фото:', error);
+          });
       })
-    // .catch(error => {
-    //   setError(error);
-    // })
-  }, [searchCityName])
+  }, [searchCityName, getCityImg])
 
-  getCityImg(request)
+  // return (
+  //   <div>
+  //     {/* Тут можна вставити фото зі stаte imageURL */}
+  //     {imageURL && <img src={imageURL} alt="City" />}
+  //   </div>
+  // );
 }
-
 
 
 export default SearchCityPhoto;

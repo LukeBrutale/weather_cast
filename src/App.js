@@ -14,7 +14,7 @@ import SideBar from "./components/SideBar/SideBar";
 import SearchCityPhoto from "./components/SeacrhCityPhoto/SearchCityPhoto";
 import WeatherWeekView from "./components/WeatherWeekView/WeathetWeekView";
 
-// const defaultImg = "https://media.istockphoto.com/id/1206575314/fr/vectoriel/image-non-disponible-ic%C3%B4ne.jpg?s=170667a&w=0&k=20&c=12KccDH9dWe-WD9IPmS25ik_-rZfd8qUxujILlYG-Uo=";
+const defaultImg = "https://media.istockphoto.com/id/1206575314/fr/vectoriel/image-non-disponible-ic%C3%B4ne.jpg?s=170667a&w=0&k=20&c=12KccDH9dWe-WD9IPmS25ik_-rZfd8qUxujILlYG-Uo=";
 
 function App() {
   // debugger;
@@ -57,9 +57,12 @@ function App() {
     console.log(cityName);
     const card = cityImg.find(card => card.cityName === cityName);
     if (card && card.img) {
-      return card.img;
+      return Promise.resolve(card.img);
+    } else if (cityName && cityName.photos && cityName.photos[0] && cityName.photos[0].src && cityName.photos[0].src.medium) {
+      console.log(cityName.photos[0].src.medium);
+      return Promise.resolve(cityName.photos[0].src.medium);
     } else {
-      return "https://images.pexels.com/photos/3496763/pexels-photo-3496763.jpeg";
+      return Promise.resolve(defaultImg);
     }
   }
 
