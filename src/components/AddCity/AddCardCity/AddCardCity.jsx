@@ -29,7 +29,6 @@ const AddCardCity = ({ setModalActive, removeCard, filteredCards, filterCityWeat
         filteredCards={filteredCards}
         filterCityWeather={filterCityWeather}
       />
-
     </div>
   )
 };

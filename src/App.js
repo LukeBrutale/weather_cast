@@ -37,6 +37,7 @@ function App() {
   const [endDate, setEndDate] = useState(cards.length > 0 ? cards[0].endDate : "");
   const [modalActive, setModalActive] = useState(false);
   const [filteredCards, setFilteredCards] = useState(cards);
+  const [urlImg, setUrlImg] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("userData", JSON.stringify(cards));
@@ -54,28 +55,44 @@ function App() {
     setFilteredCards(filteredCards);
   }
 
-  let urlImg;
-  async function getCityImg(cityName) {
-    // console.log(cityName);
-    const card = cityImg.find(card => card.cityName === cityName);
-    if (card && card.img) {
-      return card.img;
-    } else if (cityName.photos && cityName.photos[0] && cityName.photos[0].src && cityName.photos[0].src.medium) {
-      urlImg = cityName.photos[0].src.medium;
-      // console.log(urlImg);
+  // async function getCityImg(cityImg) {
+  //   console.log("cityImg", cityImg);
+  //   if (cityImg.photos && cityImg.photos[0] && cityImg.photos[0].src && cityImg.photos[0].src.medium) {
+  //     urlImg = cityImg.photos[0].src.medium;
+  //     console.log("urlImg in getCityImg", urlImg);
+  //   } else {
+  //     return defaultImg;
+  //   }
+  // }
+
+  async function getCityImg(cityImg) {
+    console.log("cityImg", cityImg);
+    if (cityImg.photos && cityImg.photos[0] && cityImg.photos[0].src && cityImg.photos[0].src.medium) {
+      const imgUrl = cityImg.photos[0].src.medium;
+      console.log("urlImg in getCityImg", imgUrl);
+      setUrlImg(imgUrl); // Встановлення значення urlImg
     } else {
-      return defaultImg;
+      setUrlImg(defaultImg); // Встановлення значення urlImg за замовчуванням
     }
   }
 
   function addCard(cityName, startDate, endDate) {
-    let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: urlImg };
-    console.log(urlImg);
+    console.log("urlImg in addCard", urlImg);
+    let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: urlImg ? urlImg : defaultImg };
     let newCityCard = [newCard, ...cards];
     setCards(newCityCard);
     setFilteredCards(newCityCard);
     setRequest(cityName);
   }
+
+  // function addCard(cityName, startDate, endDate) {
+  //   console.log("urlImg in addCard", urlImg);
+  //   let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: urlImg ? urlImg : defaultImg };
+  //   let newCityCard = [newCard, ...cards];
+  //   setCards(newCityCard);
+  //   setFilteredCards(newCityCard);
+  //   setRequest(cityName);
+  // }
 
   function filterCityWeather(id) {
     const filterCityCard = cards.filter(card => card.id === id);
@@ -112,7 +129,7 @@ function App() {
     <div className="App">
       <Header />
       <SearchCity cities={cards} updateFilteredCards={updateFilteredCards} />
-      <SearchCityPhoto searchCityName={request} getCityImg={getCityImg} />
+      <SearchCityPhoto searchCityName={request} setSearchCityName={setRequest} getCityImg={getCityImg} />
       <AddCity searchCity={searchCity} searchCardCity={setSearchCity} setModalActive={setModalActive} startDate={startDate} endDate={endDate} removeCard={removeCard} filteredCards={filteredCards} filterCityWeather={filterCityWeather} />
       <WeatherWeekView searchCity={searchCity} startDate={startDate} endDate={endDate} />
       <SideBar searchCity={searchCity} startDate={startDate} />

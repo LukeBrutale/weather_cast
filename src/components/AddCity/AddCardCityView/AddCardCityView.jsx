@@ -5,7 +5,6 @@ import s from './AddCardCityView.module.css'
 const AddCardCityView = ({ activeCard, removeCard, filteredCards, filterCityWeather, setActiveCard }) => {
   // debugger
 
-  // console.log(filteredCards)
   const containerRef = useRef(null);
   const handleScroll = (e) => {
     const container = containerRef.current;
@@ -24,7 +23,6 @@ const AddCardCityView = ({ activeCard, removeCard, filteredCards, filterCityWeat
       {filteredCards.map(card => (
         <div className={`${s.card} ${activeCard === card.id ? s.active : ''}`} key={card.id}
           onClick={() => {
-            console.log(card.img)
             filterCityWeather(card.id);
             setActiveCard(card.id);
           }}>
