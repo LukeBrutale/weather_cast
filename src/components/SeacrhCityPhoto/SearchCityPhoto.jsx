@@ -4,7 +4,6 @@ import api from '../../services/cityPhotoAPI';
 function SearchCityPhoto({ searchCityName, getCityImg }) {
   const [, setRequest] = useState(null);
   const [, setImageURL] = useState(null);
-  // console.log(searchCityName)
 
 
 
@@ -25,6 +24,7 @@ function SearchCityPhoto({ searchCityName, getCityImg }) {
     fetchData();
   }, [searchCityName, getCityImg]);
 }
+
 
 
 export default SearchCityPhoto;

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { v1 } from "uuid";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import cityImg from "./services/cityImage";
+// import cityImg from "./services/cityImage";
 
 import Header from "./components/Header/Header";
 import SearchCity from "./components/SearchCity/SearchCity";
@@ -31,7 +31,7 @@ function App() {
   );
 
   const [request, setRequest] = useState(null);
-  // console.log(request);
+
   const [searchCity, setSearchCity] = useState(cards.length > 0 ? cards[0].cityName : "");
   const [startDate, setStartDate] = useState(cards.length > 0 ? cards[0].startDate : "");
   const [endDate, setEndDate] = useState(cards.length > 0 ? cards[0].endDate : "");
@@ -55,20 +55,10 @@ function App() {
     setFilteredCards(filteredCards);
   }
 
-  // async function getCityImg(cityImg) {
-  //   console.log("cityImg", cityImg);
-  //   if (cityImg.photos && cityImg.photos[0] && cityImg.photos[0].src && cityImg.photos[0].src.medium) {
-  //     urlImg = cityImg.photos[0].src.medium;
-  //     console.log("urlImg in getCityImg", urlImg);
-  //   } else {
-  //     return defaultImg;
-  //   }
-  // }
-
   async function getCityImg(cityImg) {
-    console.log("cityImg", cityImg);
+    console.log("cityImg in getCityImg", cityImg);
     if (cityImg.photos && cityImg.photos[0] && cityImg.photos[0].src && cityImg.photos[0].src.medium) {
-      const imgUrl = cityImg.photos[0].src.medium;
+      const imgUrl = await cityImg.photos[0].src.medium;
       console.log("urlImg in getCityImg", imgUrl);
       setUrlImg(imgUrl); // Встановлення значення urlImg
     } else {
@@ -76,23 +66,30 @@ function App() {
     }
   }
 
-  function addCard(cityName, startDate, endDate) {
+  // async function addCard(cityName, startDate, endDate) {
+  //   // setUrlImg(null); // Скидаємо urlImg на null перед запитом
+  //   try {
+  //     await getCityImg(request); // Очікування завершення getCityImg
+  //     console.log("urlImg in addCard", urlImg);
+  //     let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: urlImg ? urlImg : defaultImg };
+  //     let newCityCard = [newCard, ...cards];
+  //     setCards(newCityCard);
+  //     setFilteredCards(newCityCard);
+  //     setRequest(cityName);
+  //   } catch (error) {
+  //     console.error("Помилка додавання карточки:", error);
+  //   }
+  // }
+
+  async function addCard(cityName, startDate, endDate) {
     console.log("urlImg in addCard", urlImg);
-    let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: urlImg ? urlImg : defaultImg };
+    const img = await urlImg;
+    let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: img ? img : defaultImg };
     let newCityCard = [newCard, ...cards];
     setCards(newCityCard);
     setFilteredCards(newCityCard);
     setRequest(cityName);
   }
-
-  // function addCard(cityName, startDate, endDate) {
-  //   console.log("urlImg in addCard", urlImg);
-  //   let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: urlImg ? urlImg : defaultImg };
-  //   let newCityCard = [newCard, ...cards];
-  //   setCards(newCityCard);
-  //   setFilteredCards(newCityCard);
-  //   setRequest(cityName);
-  // }
 
   function filterCityWeather(id) {
     const filterCityCard = cards.filter(card => card.id === id);
