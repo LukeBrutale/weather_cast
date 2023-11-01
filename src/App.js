@@ -56,35 +56,17 @@ function App() {
   }
 
   async function getCityImg(cityImg) {
-    console.log("cityImg in getCityImg", cityImg);
-    if (cityImg.photos && cityImg.photos[0] && cityImg.photos[0].src && cityImg.photos[0].src.medium) {
-      const imgUrl = await cityImg.photos[0].src.medium;
-      console.log("urlImg in getCityImg", imgUrl);
-      setUrlImg(imgUrl); // Встановлення значення urlImg
-    } else {
-      setUrlImg(defaultImg); // Встановлення значення urlImg за замовчуванням
+    console.log("фото в  getCityImg", cityImg);
+    if (cityImg) {
+      await cityImg;
+      setUrlImg(cityImg);
     }
   }
 
-  // async function addCard(cityName, startDate, endDate) {
-  //   // setUrlImg(null); // Скидаємо urlImg на null перед запитом
-  //   try {
-  //     await getCityImg(request); // Очікування завершення getCityImg
-  //     console.log("urlImg in addCard", urlImg);
-  //     let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: urlImg ? urlImg : defaultImg };
-  //     let newCityCard = [newCard, ...cards];
-  //     setCards(newCityCard);
-  //     setFilteredCards(newCityCard);
-  //     setRequest(cityName);
-  //   } catch (error) {
-  //     console.error("Помилка додавання карточки:", error);
-  //   }
-  // }
-
   async function addCard(cityName, startDate, endDate) {
-    console.log("urlImg in addCard", urlImg);
-    const img = await urlImg;
-    let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: img ? img : defaultImg };
+    await urlImg;
+    console.log("фото в addCard", urlImg);
+    let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: urlImg ? urlImg : defaultImg };
     let newCityCard = [newCard, ...cards];
     setCards(newCityCard);
     setFilteredCards(newCityCard);

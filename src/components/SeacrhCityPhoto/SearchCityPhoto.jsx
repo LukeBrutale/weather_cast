@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import api from '../../services/cityPhotoAPI';
 
 function SearchCityPhoto({ searchCityName, getCityImg }) {
-  const [, setRequest] = useState(null);
+  const [, setResponse] = useState(null);
   const [, setImageURL] = useState(null);
 
 
@@ -13,16 +13,16 @@ function SearchCityPhoto({ searchCityName, getCityImg }) {
         if (!searchCityName) {
           return;
         }
-        const request = await api.fetchAPI(searchCityName);
-        setRequest(request);
-        const imgUrl = await getCityImg(request);
+        const response = await api.fetchAPI(searchCityName);
+        setResponse(response);
+        const imgUrl = await getCityImg(response.photos[0].src.medium);
         setImageURL(imgUrl);
       } catch (error) {
         console.error('Помилка отримання фото:', error);
       }
     }
     fetchData();
-  }, [searchCityName, getCityImg]);
+  }, [searchCityName]);
 }
 
 
