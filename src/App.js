@@ -58,13 +58,14 @@ function App() {
   async function getCityImg(cityImg) {
     console.log("фото в  getCityImg", cityImg);
     if (cityImg) {
-      await cityImg;
+      // await cityImg;
       setUrlImg(cityImg);
     }
   }
 
-  async function addCard(cityName, startDate, endDate) {
-    await urlImg;
+  async function addCard(cityName, startDate, endDate, cityImg) {
+    await getCityImg(cityImg);
+    // await urlImg;
     console.log("фото в addCard", urlImg);
     let newCard = { id: v1(), cityName: cityName, startDate: startDate, endDate: endDate, img: urlImg ? urlImg : defaultImg };
     let newCityCard = [newCard, ...cards];
