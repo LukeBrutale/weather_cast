@@ -24,9 +24,9 @@ function App() {
 
   const [cards, setCards] = useState(
     JSON.parse(localStorage.getItem("userData")) ?? [
-      { id: v1(), cityName: "London", startDate: dateStart, endDate: dateEnd, img: getCityImg("London") },
-      { id: v1(), cityName: "Kyiv", startDate: dateStart, endDate: dateEnd, img: getCityImg("Kyiv") },
-      { id: v1(), cityName: "Los Angeles", startDate: dateStart, endDate: dateEnd, img: getCityImg("Los Angeles") },
+      { id: v1(), cityName: "London", startDate: dateStart, endDate: dateEnd, img: "https://image.arrivalguides.com/500x500/09/1dd23cc06c31c31ba7df72f2c74db5bc.jpg" },
+      { id: v1(), cityName: "Kyiv", startDate: dateStart, endDate: dateEnd, img: "https://visitukraine.today/media/blog/previews/fAWjVMXYLXywGzneHknrh9tuBRtdH12vJjT5awRu.webp" },
+      { id: v1(), cityName: "Los Angeles", startDate: dateStart, endDate: dateEnd, img: "https://griffithobservatory.org/wp-content/uploads/2021/12/cameron-venti-6QDvwq2Fjsc-unsplash-scaled.jpg" },
     ],
   );
 
